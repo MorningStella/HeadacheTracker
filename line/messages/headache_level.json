@@ -1,0 +1,196 @@
+{
+    "type": "flex",
+    "altText": "現在頭有幾分痛",
+    "contents": {
+        "type": "bubble",
+        "hero": {
+          "type": "image",
+          "size": "full",
+          "aspectRatio": "20:13",
+          "aspectMode": "cover",
+          "action": {
+            "type": "uri",
+            "uri": "https://line.me/"
+          },
+          "url": "https://image1.gamme.com.tw/news2/2016/16/30/qZqYnaadkZ_brKQ.jpg"
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "md",
+          "contents": [
+            {
+              "type": "text",
+              "text": "頭痛幾分",
+              "weight": "bold",
+              "size": "xl",
+              "align": "center"
+            },
+            {
+              "type": "text",
+              "text": "現在幾分痛",
+              "size": "md",
+              "color": "#aaaaaa",
+              "align": "center"
+            }
+          ]
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "1",
+                    "data": "pain_level=1"
+                  },
+                  "style": "primary",
+                  "color": "#91D3FA",
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "2",
+                    "data": "pain_level=2"
+                  },
+                  "style": "primary",
+                  "color": "#76C9F9",
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "3",
+                    "data": "pain_level=3"
+                  },
+                  "style": "primary",
+                  "color": "#5CBEF7",
+                  "height": "sm"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "4",
+                    "data": "pain_level=4"
+                  },
+                  "style": "primary",
+                  "color": "#41B3F6",
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "5",
+                    "data": "pain_level=5"
+                  },
+                  "style": "primary",
+                  "color": "#26A9F4",
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "6",
+                    "data": "pain_level=6"
+                  },
+                  "style": "primary",
+                  "color": "#0B9EF3",
+                  "height": "sm"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "7",
+                    "data": "pain_level=7"
+                  },
+                  "style": "primary",
+                  "color": "#0A83CA",
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "8",
+                    "data": "pain_level=8"
+                  },
+                  "style": "primary",
+                  "color": "#0869A0",
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "9",
+                    "data": "pain_level=9"
+                  },
+                  "style": "primary",
+                  "color": "#064E76",
+                  "height": "sm"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "spacing": "sm",
+              "margin": "md",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "∞",
+                    "data": "pain_level=infinite"
+                  },
+                  "style": "primary",
+                  "color": "#FF4500",
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "help",
+                    "data": "pain_level=help"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#FF4500"
+                }
+              ]
+            }
+          ]
+        }
+      }
+  }
