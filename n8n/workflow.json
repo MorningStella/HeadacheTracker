@@ -1,0 +1,827 @@
+{
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "linebot",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -620,
+          -40
+        ],
+        "id": "58845eec-6361-4b48-8152-651a475ce30e",
+        "name": "Webhook",
+        "webhookId": "c6350716-2048-4591-a918-2f7fe74ef7a3"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.events[0].type }}",
+                      "rightValue": "postback",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "b0083c5d-f530-4533-849f-783924bbd341"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "postback"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "82a1ba46-2be0-4723-91a3-5fe0a2b1b85e",
+                      "leftValue": "={{ $json.body.events[0].type }}",
+                      "rightValue": "message",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "message"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          -400,
+          -40
+        ],
+        "id": "58fb4960-497c-4dbc-81a9-4465e1e8fdd8",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "51a9606b-ae3f-474d-973c-d642536d7ce1",
+                "name": "message",
+                "value": "{   \"type\": \"template\",\n    \"altText\": \"吃了什麼藥\",\n    \"template\": {\n        \"type\": \"buttons\",\n        \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n        \"imageAspectRatio\": \"rectangle\",\n        \"imageSize\": \"cover\",\n        \"title\": \"吃了什麼藥\",\n        \"text\": \"請選擇一種\",\n        \"actions\": [\n            {\n                \"type\": \"postback\",\n                \"label\": \"吃了普拿疼\",\n                \"data\": \"drug_type=普拿疼\"\n            },\n            {\n                \"type\": \"postback\",\n                \"label\": \"吃了伊普\",\n                \"data\": \"drug_type=伊普\"\n            },\n            {\n                \"type\": \"postback\",\n                \"label\": \"吃了肌肉鬆弛\",\n                \"data\": \"drug_type=肌肉鬆弛\"\n            },\n            {\n                \"type\": \"postback\",\n                \"label\": \"吃了中藥\",\n                \"data\": \"drug_type=中藥\"\n            }\n        ]\n    }\n}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          300,
+          0
+        ],
+        "id": "79d01996-1e1a-43c3-bbd1-d20d7fbef465",
+        "name": "Set Drug Select"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.line.me/v2/bot/message/reply",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{{ $json.message }}\n]\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1240,
+          -100
+        ],
+        "id": "29f944fb-bb16-4594-a9a9-0fdf2bec2d61",
+        "name": "Response Drug Select"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.events[0].message.text }}",
+                      "rightValue": "吃藥了",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      },
+                      "id": "5ee35c6f-84c5-423c-b446-e74bff580492"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "吃藥"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "f56d3cde-d045-4911-9bd4-948b3f1a843c",
+                      "leftValue": "={{ $json.body.events[0].message.text }}",
+                      "rightValue": "=頭痛了",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "頭痛"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "bd2f8573-6285-49af-9a80-800336668265",
+                      "leftValue": "={{ $json.body.events[0].message.text }}",
+                      "rightValue": "上次吃藥",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "上次吃藥"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          -240,
+          180
+        ],
+        "id": "c41afbb5-3709-40e8-9aa3-c09e10c498ce",
+        "name": "Determine Response Action"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.drug_type }}",
+                      "rightValue": "drug",
+                      "operator": {
+                        "type": "string",
+                        "operation": "notEmpty",
+                        "singleValue": true
+                      },
+                      "id": "6b24bb20-5d45-4b84-9c6f-574bdc5f5483"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "response drug number"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "c3d29e35-8353-404a-9668-72bcf7c5ea08",
+                      "leftValue": "={{ $json.drug_number }}",
+                      "rightValue": "",
+                      "operator": {
+                        "type": "string",
+                        "operation": "notEmpty",
+                        "singleValue": true
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "responses drug datetime"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "98088412-70f4-4e62-8e62-282f6dfae893",
+                      "leftValue": "={{ $json.drug_datetime }}",
+                      "rightValue": "true",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "write drug record"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          100,
+          -180
+        ],
+        "id": "2c66882b-1c00-49b3-9883-b6152888b776",
+        "name": "Switch1"
+      },
+      {
+        "parameters": {
+          "jsCode": "const input = $input.first().json.body.events[0].postback.data;\n\n// Use a single regex to capture key-value pairs for both long (--key=value) and short (-k=value) options\nconst regex = /([a-zA-Z0-9_]+)=([^\\s]*)/gu;\n\nlet matches;\nlet drug_type = null;\nlet drug_type_tmp = null;\nlet drug_number = null;\nlet drug_number_tmp = null;\nlet drug_datetime = null;\n\n// Loop through the matches\nwhile ((matches = regex.exec(input)) !== null) {\n    const key = matches[1] || matches[3]; // Get long option name or short key\n    var value = matches[2] || matches[4]; // Get the associated value\n    value = value.trimEnd()\n    // Assign to the appropriate variable based on the key\n    if (key === 'drug_type') {\n        drug_type = value;\n    } else if (key === 'drug_number') {\n        drug_number = value;\n    } else if (key === 'drug_datetime') {\n      drug_datetime = value;\n    } else if (key === 'drug_type_tmp') {\n      drug_type_tmp = value\n    } else if (key === 'drug_number_tmp') {\n      drug_number_tmp = value\n    }\n}\n\n// Return the results\nreturn { drug_datetime, drug_number, drug_type, drug_type_tmp, drug_number_tmp };"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -180,
+          -140
+        ],
+        "id": "da957630-6609-4c23-b275-86c64046b2d0",
+        "name": "Code"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "51a9606b-ae3f-474d-973c-d642536d7ce1",
+                "name": "message",
+                "value": "={\n    \"type\": \"template\",\n    \"altText\": \"吃了幾顆\",\n    \"template\": {\n        \"type\": \"buttons\",\n        \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n        \"imageAspectRatio\": \"rectangle\",\n        \"imageSize\": \"cover\",\n        \"title\": \"吃了幾顆藥\",\n        \"text\": \"四小時只能吃一顆!\",\n        \"actions\": [\n            {\n                \"type\": \"postback\",\n                \"label\": \"1\",\n                \"data\": \"drug_number=1 drug_type_tmp={{$json.drug_type}}\"\n            },\n            {\n                \"type\": \"postback\",\n                \"label\": \"2\",\n                \"data\": \"drug_number=2 drug_type_tmp={{$json.drug_type}}\"\n            }\n        ]\n    }\n}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          560,
+          -460
+        ],
+        "id": "0ef9be72-d0bc-401e-9443-9e9ee0fe4107",
+        "name": "Set Drug Number"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "6b262a70-2015-4722-9bcc-131f673f88ec",
+                "name": "=message",
+                "value": "={\n  \"type\": \"template\",\n  \"altText\": \"this is a buttons template\",\n  \"template\": {\n    \"type\": \"buttons\",\n    \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n    \"title\": \"什麼時候吃的\",\n    \"text\": \"要記錄唷\",\n    \"actions\": [\n      {\n        \"type\": \"datetimepicker\",\n        \"label\": \"吃的時間\",\n        \"data\": \"drug_datetime=true drug_type_tmp={{$json.drug_type_tmp}} drug_number_tmp={{$json.drug_number}}\",\n        \"mode\": \"datetime\",\n        \"initial\": \"{{$now.format('yyyy-MM-dd')}}T00:00\",\n        \"max\": \"{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00\",\n        \"min\": \"{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00\"\n      }\n    ]\n  }\n}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          560,
+          -260
+        ],
+        "id": "3088ccc5-3608-4879-9212-906ff41078fa",
+        "name": "Set Drug DateTime"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "467ec0f2-bcfa-4dc3-9a7d-f5f708bcad18",
+                "name": "drug_type",
+                "value": "={{ $json.drug_type_tmp }}",
+                "type": "string"
+              },
+              {
+                "id": "06d005d7-3e7b-412f-9e51-4b90385b5f9e",
+                "name": "drug_number",
+                "value": "={{ $json.drug_number_tmp }}",
+                "type": "string"
+              },
+              {
+                "id": "91bb2ed6-949f-4a0a-a0fc-725d208e0d22",
+                "name": "drug_datetime",
+                "value": "={{ $('Webhook').item.json.body.events[0].postback.params.datetime.toDateTime().format('yyyy-MM-dd hh:mm') }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          480,
+          -100
+        ],
+        "id": "0c169ab2-dc72-47e4-a2e8-b866a14d0b09",
+        "name": "Set Drug Usage"
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
+            "mode": "list",
+            "cachedResultName": "頭痛 sheet",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "工作表1",
+            "mode": "name"
+          },
+          "columns": {
+            "mappingMode": "autoMapInputData",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "drug_type",
+                "displayName": "drug_type",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "drug_number",
+                "displayName": "drug_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "drug_datetime",
+                "displayName": "drug_datetime",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.5,
+        "position": [
+          1140,
+          120
+        ],
+        "id": "0a191afd-f24c-414e-a76f-0dca4c91b09f",
+        "name": "Google Sheets",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "Ih53FiJ3YzQzkiYH",
+            "name": "devin.lin.gss Google Sheets "
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.line.me/v2/bot/message/reply",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": \"頭痛快飛😭 {{ $json.drug_datetime }} 吃了 {{ $json.drug_number }} {{ $json.drug_type }}\"\n}\n]\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1540,
+          120
+        ],
+        "id": "edf440d3-3943-488a-8763-c8214fc30858",
+        "name": "Response Success"
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
+            "mode": "list",
+            "cachedResultName": "頭痛 sheet",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 226063752,
+            "mode": "list",
+            "cachedResultName": "工作表3",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit#gid=226063752"
+          },
+          "options": {
+            "dataLocationOnSheet": {
+              "values": {
+                "rangeDefinition": "detectAutomatically",
+                "readRowsUntil": "firstEmptyRow"
+              }
+            },
+            "returnFirstMatch": false
+          }
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.5,
+        "position": [
+          320,
+          280
+        ],
+        "id": "059b5e22-abfd-4f38-bf5d-6f34a809be37",
+        "name": "Google Sheets1",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "Ih53FiJ3YzQzkiYH",
+            "name": "devin.lin.gss Google Sheets "
+          }
+        }
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
+            "mode": "list",
+            "cachedResultName": "頭痛 sheet",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "工作表1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit#gid=0"
+          },
+          "options": {
+            "dataLocationOnSheet": {
+              "values": {
+                "rangeDefinition": "specifyRange",
+                "firstDataRow": "={{ $json.row_number }}"
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.5,
+        "position": [
+          580,
+          280
+        ],
+        "id": "5896c8e5-e7d2-4286-b0a8-acccf5f0242f",
+        "name": "Google Sheets2",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "Ih53FiJ3YzQzkiYH",
+            "name": "devin.lin.gss Google Sheets "
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.line.me/v2/bot/message/reply",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": \"最近在 {{ $json.drug_datetime }} 吃了 {{ $json.drug_number }} {{ $json.drug_type }}\"\n}\n]\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          820,
+          280
+        ],
+        "id": "06fb85a3-8497-4349-9a1b-bcf88bb9703b",
+        "name": "Response Success1"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "d3a5c9f1-608d-4254-acb9-bfeaac16d13e",
+                "name": "message1",
+                "value": "={\n  \"type\": \"flex\",\n  \"hero\": {\n    \"type\": \"image\",\n    \"size\": \"full\",\n    \"aspectRatio\": \"20:13\",\n    \"aspectMode\": \"cover\",\n    \"action\": {\n      \"type\": \"uri\",\n      \"uri\": \"https://line.me/\"\n    },\n    \"url\": \"https://image1.gamme.com.tw/news2/2016/16/30/qZqYnaadkZ_brKQ.jpg\"\n  },\n  \"body\": {\n    \"type\": \"box\",\n    \"layout\": \"vertical\",\n    \"spacing\": \"md\",\n    \"contents\": [\n      {\n        \"type\": \"text\",\n        \"text\": \"頭痛幾分\",\n        \"weight\": \"bold\",\n        \"size\": \"xl\",\n        \"align\": \"center\"\n      },\n      {\n        \"type\": \"text\",\n        \"text\": \"現在幾分痛\",\n        \"size\": \"md\",\n        \"color\": \"#aaaaaa\",\n        \"align\": \"center\"\n      }\n    ]\n  },\n  \"footer\": {\n    \"type\": \"box\",\n    \"layout\": \"vertical\",\n    \"spacing\": \"sm\",\n    \"contents\": [\n      {\n        \"type\": \"box\",\n        \"layout\": \"horizontal\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"1\",\n              \"data\": \"pain_level=1\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#91D3FA\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"2\",\n              \"data\": \"pain_level=2\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#76C9F9\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"3\",\n              \"data\": \"pain_level=3\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#5CBEF7\",\n            \"height\": \"sm\"\n          }\n        ]\n      },\n      {\n        \"type\": \"box\",\n        \"layout\": \"horizontal\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"4\",\n              \"data\": \"pain_level=4\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#41B3F6\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"5\",\n              \"data\": \"pain_level=5\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#26A9F4\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"6\",\n              \"data\": \"pain_level=6\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#0B9EF3\",\n            \"height\": \"sm\"\n          }\n        ]\n      },\n      {\n        \"type\": \"box\",\n        \"layout\": \"horizontal\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"7\",\n              \"data\": \"pain_level=7\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#0A83CA\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"8\",\n              \"data\": \"pain_level=8\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#0869A0\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"9\",\n              \"data\": \"pain_level=9\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#064E76\",\n            \"height\": \"sm\"\n          }\n        ]\n      },\n      {\n        \"type\": \"box\",\n        \"layout\": \"horizontal\",\n        \"spacing\": \"sm\",\n        \"margin\": \"md\",\n        \"contents\": [\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"∞\",\n              \"data\": \"pain_level=infinite\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#FF4500\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"help\",\n              \"data\": \"pain_level=help\"\n            },\n            \"style\": \"primary\",\n            \"height\": \"sm\",\n            \"color\": \"#FF4500\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                "type": "string"
+              },
+              {
+                "id": "1366a377-4f67-4f9f-9304-89d8859906fb",
+                "name": "message",
+                "value": "={\n    \"type\": \"flex\",\n    \"altText\": \"現在頭有幾分痛\",\n    \"contents\": {\n        \"type\": \"bubble\",\n        \"hero\": {\n          \"type\": \"image\",\n          \"size\": \"full\",\n          \"aspectRatio\": \"20:13\",\n          \"aspectMode\": \"cover\",\n          \"action\": {\n            \"type\": \"uri\",\n            \"uri\": \"https://line.me/\"\n          },\n          \"url\": \"https://image1.gamme.com.tw/news2/2016/16/30/qZqYnaadkZ_brKQ.jpg\"\n        },\n        \"body\": {\n          \"type\": \"box\",\n          \"layout\": \"vertical\",\n          \"spacing\": \"md\",\n          \"contents\": [\n            {\n              \"type\": \"text\",\n              \"text\": \"頭痛幾分\",\n              \"weight\": \"bold\",\n              \"size\": \"xl\",\n              \"align\": \"center\"\n            },\n            {\n              \"type\": \"text\",\n              \"text\": \"現在幾分痛\",\n              \"size\": \"md\",\n              \"color\": \"#aaaaaa\",\n              \"align\": \"center\"\n            }\n          ]\n        },\n        \"footer\": {\n          \"type\": \"box\",\n          \"layout\": \"vertical\",\n          \"spacing\": \"sm\",\n          \"contents\": [\n            {\n              \"type\": \"box\",\n              \"layout\": \"horizontal\",\n              \"spacing\": \"sm\",\n              \"contents\": [\n                {\n                  \"type\": \"button\",\n                  \"action\": {\n                    \"type\": \"postback\",\n                    \"label\": \"1\",\n                    \"data\": \"pain_level=1\"\n                  },\n                  \"style\": \"primary\",\n                  \"color\": \"#91D3FA\",\n                  \"height\": \"sm\"\n                },\n                {\n                  \"type\": \"button\",\n                  \"action\": {\n                    \"type\": \"postback\",\n                    \"label\": \"2\",\n                    \"data\": \"pain_level=2\"\n                  },\n                  \"style\": \"primary\",\n                  \"color\": \"#76C9F9\",\n                  \"height\": \"sm\"\n                },\n                {\n                  \"type\": \"button\",\n                  \"action\": {\n                    \"type\": \"postback\",\n                    \"label\": \"3\",\n                    \"data\": \"pain_level=3\"\n                  },\n                  \"style\": \"primary\",\n                  \"color\": \"#5CBEF7\",\n                  \"height\": \"sm\"\n                }\n              ]\n            },\n            {\n              \"type\": \"box\",\n              \"layout\": \"horizontal\",\n              \"spacing\": \"sm\",\n              \"contents\": [\n                {\n                  \"type\": \"button\",\n                  \"action\": {\n                    \"type\": \"postback\",\n                    \"label\": \"4\",\n                    \"data\": \"pain_level=4\"\n                  },\n                  \"style\": \"primary\",\n                  \"color\": \"#41B3F6\",\n                  \"height\": \"sm\"\n                },\n                {\n                  \"type\": \"button\",\n                  \"action\": {\n                    \"type\": \"postback\",\n                    \"label\": \"5\",\n                    \"data\": \"pain_level=5\"\n                  },\n                  \"style\": \"primary\",\n                  \"color\": \"#26A9F4\",\n                  \"height\": \"sm\"\n                },\n                {\n                  \"type\": \"button\",\n                  \"action\": {\n                    \"type\": \"postback\",\n                    \"label\": \"6\",\n                    \"data\": \"pain_level=6\"\n                  },\n                  \"style\": \"primary\",\n                  \"color\": \"#0B9EF3\",\n                  \"height\": \"sm\"\n                }\n              ]\n            },\n            {\n              \"type\": \"box\",\n              \"layout\": \"horizontal\",\n              \"spacing\": \"sm\",\n              \"contents\": [\n                {\n                  \"type\": \"button\",\n                  \"action\": {\n                    \"type\": \"postback\",\n                    \"label\": \"7\",\n                    \"data\": \"pain_level=7\"\n                  },\n                  \"style\": \"primary\",\n                  \"color\": \"#0A83CA\",\n                  \"height\": \"sm\"\n                },\n                {\n                  \"type\": \"button\",\n                  \"action\": {\n                    \"type\": \"postback\",\n                    \"label\": \"8\",\n                    \"data\": \"pain_level=8\"\n                  },\n                  \"style\": \"primary\",\n                  \"color\": \"#0869A0\",\n                  \"height\": \"sm\"\n                },\n                {\n                  \"type\": \"button\",\n                  \"action\": {\n                    \"type\": \"postback\",\n                    \"label\": \"9\",\n                    \"data\": \"pain_level=9\"\n                  },\n                  \"style\": \"primary\",\n                  \"color\": \"#064E76\",\n                  \"height\": \"sm\"\n                }\n              ]\n            },\n            {\n              \"type\": \"box\",\n              \"layout\": \"horizontal\",\n              \"spacing\": \"sm\",\n              \"margin\": \"md\",\n              \"contents\": [\n                {\n                  \"type\": \"button\",\n                  \"action\": {\n                    \"type\": \"postback\",\n                    \"label\": \"∞\",\n                    \"data\": \"pain_level=infinite\"\n                  },\n                  \"style\": \"primary\",\n                  \"color\": \"#FF4500\",\n                  \"height\": \"sm\"\n                },\n                {\n                  \"type\": \"button\",\n                  \"action\": {\n                    \"type\": \"postback\",\n                    \"label\": \"help\",\n                    \"data\": \"pain_level=help\"\n                  },\n                  \"style\": \"primary\",\n                  \"height\": \"sm\",\n                  \"color\": \"#FF4500\"\n                }\n              ]\n            }\n          ]\n        }\n      }\n  }",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          480,
+          140
+        ],
+        "id": "caef535d-b5c1-44db-8788-f91099738c1d",
+        "name": "Set Ask Headache Level"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Determine Response Action",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Drug Select": {
+        "main": [
+          [
+            {
+              "node": "Response Drug Select",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Determine Response Action": {
+        "main": [
+          [
+            {
+              "node": "Set Drug Select",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Set Ask Headache Level",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Google Sheets1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch1": {
+        "main": [
+          [
+            {
+              "node": "Set Drug Number",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Set Drug DateTime",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Set Drug Usage",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code": {
+        "main": [
+          [
+            {
+              "node": "Switch1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Drug Number": {
+        "main": [
+          [
+            {
+              "node": "Response Drug Select",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Drug DateTime": {
+        "main": [
+          [
+            {
+              "node": "Response Drug Select",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Drug Usage": {
+        "main": [
+          [
+            {
+              "node": "Google Sheets",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Sheets": {
+        "main": [
+          [
+            {
+              "node": "Response Success",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Sheets1": {
+        "main": [
+          [
+            {
+              "node": "Google Sheets2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Sheets2": {
+        "main": [
+          [
+            {
+              "node": "Response Success1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Ask Headache Level": {
+        "main": [
+          [
+            {
+              "node": "Response Drug Select",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "pinData": {},
+    "meta": {
+      "templateCredsSetupCompleted": true,
+      "instanceId": "eb24dce5d4aef556d676bc7f743db645da668ad0a28698a3baf0616aa1f0314b"
+    }
+  }
