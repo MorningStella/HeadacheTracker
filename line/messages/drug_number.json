@@ -12,11 +12,13 @@
             {
                 "type": "postback",
                 "label": "1",
+                "text": "吃了1顆",
                 "data": "drug_number=1 drug_type_tmp={{$json.drug_type}}"
             },
             {
                 "type": "postback",
                 "label": "2",
+                "text": "吃了2顆",
                 "data": "drug_number=2 drug_type_tmp={{$json.drug_type}}"
             }
         ]
