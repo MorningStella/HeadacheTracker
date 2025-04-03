@@ -1,0 +1,76 @@
+{
+    "type": "template",
+    "altText": "this is a carousel template",
+    "template": {
+      "type": "carousel",
+      "columns": [
+        {
+          "thumbnailImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpJCsi5pKc3UcEZCovDfqo6dJl2T6rVCe39A&s",
+          "title": "針灸",
+          "text": "針灸好痠QQ",
+          "actions": [
+            {
+              "type": "postback",
+              "label": "現在",
+              "text": "現在正在針灸QQ",
+              "data": "action=needle action_occur=now"
+            },
+            {
+              "type": "datetimepicker",
+              "label": "選擇時間",
+              "data": "action=needle action_occur=selecttime",
+              "mode": "datetime",
+              "initial": "{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}",
+               "max": "{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00",
+               "min": "{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00"
+            }
+          ]
+        },
+        {
+          "thumbnailImageUrl": "https://img.toy-people.com/member/162521222828.png",
+          "title": "沖熱水",
+          "text": "沖熱水好舒服~",
+          "actions": [
+            {
+              "type": "postback",
+              "label": "現在",
+              "text": "剛沖完熱水",
+              "data": "action=shower action_occur=now"
+            },
+            {
+              "type": "datetimepicker",
+              "label": "選擇時間",
+              "data": "action=shower action_occur=selecttime",
+              "mode": "datetime",
+              "initial": "{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}",
+              "max": "{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00",
+              "min": "{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00"
+            }
+          ]
+        },
+        {
+          "thumbnailImageUrl": "https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/25ecd635b6ac9803e574229c886ede9a2f1fbd38.png",
+          "title": "睡覺",
+          "text": "Zzzzzzzzz",
+          "actions": [
+            {
+              "type": "postback",
+              "label": "我現在就要睡",
+              "text": "倒頭就睡",
+              "data": "action=sleep action_occur=now"
+            },
+            {
+              "type": "datetimepicker",
+              "label": "選擇時間",
+              "data": "action=sleep action_occur=selecttime",
+              "mode": "datetime",
+              "initial": "{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}",
+              "max": "{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00",
+              "min": "{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00"
+            }
+          ],
+          "imageBackgroundColor": "#EA8B8B"
+        }
+      ]
+    }
+  }
