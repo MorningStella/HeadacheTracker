@@ -1,0 +1,26 @@
+{
+    "type": "template",
+    "altText": "this is a buttons template",
+    "template": {
+      "type": "buttons",
+      "thumbnailImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s",
+      "title": "什麼時候不痛了?",
+      "text": "恭喜你!",
+      "actions": [
+        {
+          "type": "postback",
+          "label": "現在不痛了",
+          "data": "no_headache_occur=now"
+        },
+        {
+          "type": "datetimepicker",
+          "label": "選擇時間",
+          "data": "no_headache_occur=selecttime",
+          "mode": "datetime",
+          "initial": "{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}",
+          "max": "{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00",
+          "min": "{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00"
+         }
+      ]
+    }
+  }
