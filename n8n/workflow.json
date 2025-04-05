@@ -231,6 +231,30 @@
               },
               "renameOutput": true,
               "outputKey": "採取行動"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7364b61c-c126-4307-926d-8d87d1893d13",
+                    "leftValue": "={{ $json.body.events[0].message.text }}",
+                    "rightValue": "頭不痛了",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "頭不痛了"
             }
           ]
         },
@@ -472,6 +496,56 @@
               },
               "renameOutput": true,
               "outputKey": "action select time"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1833c35e-dda8-4901-ac5c-6368622db30f",
+                    "leftValue": "={{ $json.no_headache_occur }}",
+                    "rightValue": "now",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "no headache now"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9f4235aa-31bf-4562-acc4-49c7d256d426",
+                    "leftValue": "={{ $json.no_headache_occur }}",
+                    "rightValue": "selecttime",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "no headache select time"
             }
           ]
         },
@@ -480,15 +554,15 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        100,
-        -180
+        120,
+        -440
       ],
       "id": "2c66882b-1c00-49b3-9883-b6152888b776",
       "name": "Switch1"
     },
     {
       "parameters": {
-        "jsCode": "const input = $input.first().json.body.events[0].postback.data;\n\n// Use a single regex to capture key-value pairs for both long (--key=value) and short (-k=value) options\nconst regex = /([a-zA-Z0-9_]+)=([^\\s]*)/gu;\n\nlet matches;\nlet drug_type = null;\nlet drug_type_tmp = null;\nlet drug_number = null;\nlet drug_number_tmp = null;\nlet drug_datetime = null;\nlet pain_level = null;\nlet headache_occur = null;\nlet headache_occur_tmp = null;\nlet action_occur = null;\nlet action = null;\n\n// Loop through the matches\nwhile ((matches = regex.exec(input)) !== null) {\n    const key = matches[1] || matches[3]; // Get long option name or short key\n    var value = matches[2] || matches[4]; // Get the associated value\n    value = value.trimEnd()\n    // Assign to the appropriate variable based on the key\n    if (key === 'drug_type') {\n        drug_type = value;\n    } else if (key === 'drug_number') {\n        drug_number = value;\n    } else if (key === 'drug_datetime') {\n      drug_datetime = value;\n    } else if (key === 'drug_type_tmp') {\n      drug_type_tmp = value\n    } else if (key === 'drug_number_tmp') {\n      drug_number_tmp = value\n    } else if (key === 'pain_level') {\n      pain_level = value\n    } else if (key === 'headache_occur') {\n      headache_occur = value\n    } else if (key === 'headache_occur_tmp') {\n      headache_occur_tmp = value\n    } else if (key === 'action_occur') {\n      action_occur = value\n    } else if (key === 'action') {\n      action = value\n    }\n}\n\n// Return the results\nreturn { drug_datetime, drug_number, drug_type, drug_type_tmp, drug_number_tmp, pain_level, headache_occur, headache_occur_tmp, action_occur, action };"
+        "jsCode": "const input = $input.first().json.body.events[0].postback.data;\n\n// Use a single regex to capture key-value pairs for both long (--key=value) and short (-k=value) options\nconst regex = /([a-zA-Z0-9_]+)=([^\\s]*)/gu;\n\nlet matches;\nlet drug_type = null;\nlet drug_type_tmp = null;\nlet drug_number = null;\nlet drug_number_tmp = null;\nlet drug_datetime = null;\nlet pain_level = null;\nlet headache_occur = null;\nlet headache_occur_tmp = null;\nlet action_occur = null;\nlet action = null;\nlet no_headache_occur = null;\n\n// Loop through the matches\nwhile ((matches = regex.exec(input)) !== null) {\n    const key = matches[1] || matches[3]; // Get long option name or short key\n    var value = matches[2] || matches[4]; // Get the associated value\n    value = value.trimEnd()\n    // Assign to the appropriate variable based on the key\n    if (key === 'drug_type') {\n        drug_type = value;\n    } else if (key === 'drug_number') {\n        drug_number = value;\n    } else if (key === 'drug_datetime') {\n      drug_datetime = value;\n    } else if (key === 'drug_type_tmp') {\n      drug_type_tmp = value\n    } else if (key === 'drug_number_tmp') {\n      drug_number_tmp = value\n    } else if (key === 'pain_level') {\n      pain_level = value\n    } else if (key === 'headache_occur') {\n      headache_occur = value\n    } else if (key === 'headache_occur_tmp') {\n      headache_occur_tmp = value\n    } else if (key === 'action_occur') {\n      action_occur = value\n    } else if (key === 'action') {\n      action = value\n    } else if (key === 'no_headache_occur') {\n      no_headache_occur = value\n    }\n}\n\n// Return the results\nreturn { drug_datetime, drug_number, drug_type, drug_type_tmp, drug_number_tmp, pain_level, headache_occur, headache_occur_tmp, action_occur, action, no_headache_occur };"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -923,8 +997,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2860,
-        340
+        2620,
+        280
       ],
       "id": "d67727c0-de75-4dfa-a6f4-fb01aa13ea53",
       "name": "Response Success2"
@@ -972,7 +1046,7 @@
             {
               "id": "e294c37d-c089-43ea-bacd-0e5e4e089bac",
               "name": "occur_time",
-              "value": "={{ $('Webhook').item.json.body.events[0].postback.params.datetime.toDateTime().format('yyyy-MM-ddThh:mm') }}",
+              "value": "={{ $('Webhook').item.json.body.events[0].postback.params.datetime }}",
               "type": "string"
             },
             {
@@ -1227,6 +1301,215 @@
       ],
       "id": "833b48ef-b20b-4d5d-827a-435b71c77666",
       "name": "Response Action"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a3294e08-8654-446d-ba62-1a9d27fcdace",
+              "name": "message",
+              "value": "={\n    \"type\": \"template\",\n    \"altText\": \"this is a buttons template\",\n    \"template\": {\n      \"type\": \"buttons\",\n      \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n      \"title\": \"什麼時候不痛了?\",\n      \"text\": \"恭喜你!\",\n      \"actions\": [\n        {\n          \"type\": \"postback\",\n          \"label\": \"現在不痛了\",\n          \"data\": \"no_headache_occur=now\"\n        },\n        {\n          \"type\": \"datetimepicker\",\n          \"label\": \"選擇時間\",\n          \"data\": \"no_headache_occur=selecttime\",\n          \"mode\": \"datetime\",\n          \"initial\": \"{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}\",\n          \"max\": \"{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00\",\n          \"min\": \"{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00\"\n         }\n      ]\n    }\n  }",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        100,
+        560
+      ],
+      "id": "9498da3d-dfc0-4e40-aaa3-d700dd4f1847",
+      "name": "Set No Headache When"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9b5e6717-e940-4739-b294-4b41f35be790",
+              "name": "no_headache_time",
+              "value": "={{$now.format('yyyy-MM-dd')}}T{{ $now.format('HH:mm') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        1400
+      ],
+      "id": "8339cbc8-70e5-4a15-bb7a-828aa93ddb4c",
+      "name": "Set No Headache Now"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "887c6e00-e6e0-44a0-92d8-5f293059fd66",
+              "name": "occurred_time",
+              "value": "={{ $json.no_headache_time }}",
+              "type": "string"
+            },
+            {
+              "id": "c1f9b6b1-a41f-4349-ad5f-eed9a0cf2ce6",
+              "name": "pain_level",
+              "value": "0",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        900,
+        1400
+      ],
+      "id": "78e9b959-2a44-4c82-ae76-90d2c0cea4d9",
+      "name": "Set No Headache Insert Data"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
+          "mode": "list",
+          "cachedResultName": "頭痛 sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "工作表4",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "pain_level",
+              "displayName": "pain_level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "occurred_time",
+              "displayName": "occurred_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1180,
+        1400
+      ],
+      "id": "c0d917b5-c465-444d-8204-4878be3731d7",
+      "name": "Google Sheets4",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Ih53FiJ3YzQzkiYH",
+          "name": "devin.lin.gss Google Sheets "
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": ""
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": \"恭喜你在 {{ $json.occurred_time }} 頭不痛啦 😊\"\n}\n]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1460,
+        1400
+      ],
+      "id": "2bfeed66-6d95-4a0a-81d9-685ad7737168",
+      "name": "Response Success3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9b5e6717-e940-4739-b294-4b41f35be790",
+              "name": "no_headache_time",
+              "value": "={{$now.format('yyyy-MM-dd')}}T{{ $now.format('HH:mm') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        640,
+        -80
+      ],
+      "id": "9989199e-c9c1-4f57-b4ed-2f6f4d80f0cf",
+      "name": "Set No Headache Now1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9b5e6717-e940-4739-b294-4b41f35be790",
+              "name": "no_headache_time",
+              "value": "={{ $('Webhook').item.json.body.events[0].postback.params.datetime }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        1660
+      ],
+      "id": "f0fdb4a2-8844-47bd-b315-b3d8eef4d446",
+      "name": "Set No Headache Select Time"
     }
   ],
   "connections": {
@@ -1299,6 +1582,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Set No Headache When",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -1363,6 +1653,20 @@
         [
           {
             "node": "Set Action Select Time",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set No Headache Now",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set No Headache Select Time",
             "type": "main",
             "index": 0
           }
@@ -1583,6 +1887,61 @@
         [
           {
             "node": "Set Action Insertion Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set No Headache When": {
+      "main": [
+        [
+          {
+            "node": "Response Drug Select",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set No Headache Now": {
+      "main": [
+        [
+          {
+            "node": "Set No Headache Insert Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set No Headache Insert Data": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets4": {
+      "main": [
+        [
+          {
+            "node": "Response Success3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set No Headache Select Time": {
+      "main": [
+        [
+          {
+            "node": "Set No Headache Insert Data",
             "type": "main",
             "index": 0
           }
