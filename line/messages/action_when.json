@@ -1,6 +1,6 @@
 {
     "type": "template",
-    "altText": "this is a carousel template",
+    "altText": "採取什麼行動?",
     "template": {
       "type": "carousel",
       "columns": [
