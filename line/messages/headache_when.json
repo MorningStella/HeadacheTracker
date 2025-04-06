@@ -1,22 +1,26 @@
 {
-    "type": "template",
-    "altText": "this is a buttons template",
-    "template": {
-      "type": "buttons",
-      "thumbnailImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s",
-      "title": "什麼時候?",
-      "text": "選擇頭痛時間",
-      "actions": [
-        {
-          "type": "postback",
-          "label": "就是現在，痛死",
-          "data": "headache_occur=now"
-        },
-        {
-          "type": "postback",
-          "label": "讓我選時間",
-          "data": "headache_occur=selecttime"
-        }
-      ]
-    }
+  "type": "template",
+  "altText": "什麼時候頭痛的?",
+  "template": {
+    "type": "buttons",
+    "thumbnailImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s",
+    "title": "什麼時候?",
+    "text": "選擇頭痛時間",
+    "actions": [
+      {
+        "type": "postback",
+        "label": "就是現在，痛死",
+        "data": "headache_occur=now"
+      },
+      {
+        "type": "datetimepicker",
+        "label": "讓我選時間",
+        "data": "headache_occur=selecttime",
+        "mode": "datetime",
+        "initial": "{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}",
+        "max": "{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00",
+        "min": "{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00"
+      }
+    ]
   }
+}
