@@ -862,12 +862,6 @@
         "assignments": {
           "assignments": [
             {
-              "id": "d3a5c9f1-608d-4254-acb9-bfeaac16d13e",
-              "name": "message1",
-              "value": "={\n  \"type\": \"flex\",\n  \"hero\": {\n    \"type\": \"image\",\n    \"size\": \"full\",\n    \"aspectRatio\": \"20:13\",\n    \"aspectMode\": \"cover\",\n    \"action\": {\n      \"type\": \"uri\",\n      \"uri\": \"https://line.me/\"\n    },\n    \"url\": \"https://image1.gamme.com.tw/news2/2016/16/30/qZqYnaadkZ_brKQ.jpg\"\n  },\n  \"body\": {\n    \"type\": \"box\",\n    \"layout\": \"vertical\",\n    \"spacing\": \"md\",\n    \"contents\": [\n      {\n        \"type\": \"text\",\n        \"text\": \"頭痛幾分\",\n        \"weight\": \"bold\",\n        \"size\": \"xl\",\n        \"align\": \"center\"\n      },\n      {\n        \"type\": \"text\",\n        \"text\": \"現在幾分痛\",\n        \"size\": \"md\",\n        \"color\": \"#aaaaaa\",\n        \"align\": \"center\"\n      }\n    ]\n  },\n  \"footer\": {\n    \"type\": \"box\",\n    \"layout\": \"vertical\",\n    \"spacing\": \"sm\",\n    \"contents\": [\n      {\n        \"type\": \"box\",\n        \"layout\": \"horizontal\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"1\",\n              \"data\": \"pain_level=1\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#91D3FA\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"2\",\n              \"data\": \"pain_level=2\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#76C9F9\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"3\",\n              \"data\": \"pain_level=3\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#5CBEF7\",\n            \"height\": \"sm\"\n          }\n        ]\n      },\n      {\n        \"type\": \"box\",\n        \"layout\": \"horizontal\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"4\",\n              \"data\": \"pain_level=4\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#41B3F6\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"5\",\n              \"data\": \"pain_level=5\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#26A9F4\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"6\",\n              \"data\": \"pain_level=6\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#0B9EF3\",\n            \"height\": \"sm\"\n          }\n        ]\n      },\n      {\n        \"type\": \"box\",\n        \"layout\": \"horizontal\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"7\",\n              \"data\": \"pain_level=7\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#0A83CA\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"8\",\n              \"data\": \"pain_level=8\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#0869A0\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"9\",\n              \"data\": \"pain_level=9\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#064E76\",\n            \"height\": \"sm\"\n          }\n        ]\n      },\n      {\n        \"type\": \"box\",\n        \"layout\": \"horizontal\",\n        \"spacing\": \"sm\",\n        \"margin\": \"md\",\n        \"contents\": [\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"∞\",\n              \"data\": \"pain_level=infinite\"\n            },\n            \"style\": \"primary\",\n            \"color\": \"#FF4500\",\n            \"height\": \"sm\"\n          },\n          {\n            \"type\": \"button\",\n            \"action\": {\n              \"type\": \"postback\",\n              \"label\": \"help\",\n              \"data\": \"pain_level=help\"\n            },\n            \"style\": \"primary\",\n            \"height\": \"sm\",\n            \"color\": \"#FF4500\"\n          }\n        ]\n      }\n    ]\n  }\n}",
-              "type": "string"
-            },
-            {
               "id": "1366a377-4f67-4f9f-9304-89d8859906fb",
               "name": "message",
               "value": "={\n  \"type\": \"flex\",\n  \"altText\": \"現在頭有幾分痛\",\n  \"contents\": {\n      \"type\": \"bubble\",\n      \"hero\": {\n        \"type\": \"image\",\n        \"size\": \"full\",\n        \"aspectRatio\": \"20:13\",\n        \"aspectMode\": \"cover\",\n        \"action\": {\n          \"type\": \"uri\",\n          \"uri\": \"https://line.me/\"\n        },\n        \"url\": \"https://image1.gamme.com.tw/news2/2016/16/30/qZqYnaadkZ_brKQ.jpg\"\n      },\n      \"body\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"md\",\n        \"contents\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"頭痛幾分\",\n            \"weight\": \"bold\",\n            \"size\": \"xl\",\n            \"align\": \"center\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"現在幾分痛\",\n            \"size\": \"md\",\n            \"color\": \"#aaaaaa\",\n            \"align\": \"center\"\n          }\n        ]\n      },\n      \"footer\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"1\",\n                  \"data\": \"pain_level=1 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#91D3FA\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"2\",\n                  \"data\": \"pain_level=2 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#76C9F9\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"3\",\n                  \"data\": \"pain_level=3 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#5CBEF7\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"4\",\n                  \"data\": \"pain_level=4 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#41B3F6\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"5\",\n                  \"data\": \"pain_level=5 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#26A9F4\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"6\",\n                  \"data\": \"pain_level=6 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0B9EF3\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"7\",\n                  \"data\": \"pain_level=7 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0A83CA\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"8\",\n                  \"data\": \"pain_level=8 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0869A0\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"9\",\n                  \"data\": \"pain_level=9 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#064E76\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"margin\": \"md\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"∞\",\n                  \"data\": \"pain_level=infinite\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#FF4500\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"help\",\n                  \"data\": \"pain_level=help\"\n                },\n                \"style\": \"primary\",\n                \"height\": \"sm\",\n                \"color\": \"#FF4500\"\n              }\n            ]\n          }\n        ]\n      }\n    }\n}",
@@ -1023,7 +1017,7 @@
             {
               "id": "4bd62c6c-fc23-4108-ad16-74c8366cc27b",
               "name": "message",
-              "value": "{\n  \"type\": \"template\",\n  \"altText\": \"什麼時候頭痛的?\",\n  \"template\": {\n    \"type\": \"buttons\",\n    \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n    \"title\": \"什麼時候?\",\n    \"text\": \"選擇頭痛時間\",\n    \"actions\": [\n      {\n        \"type\": \"postback\",\n        \"label\": \"就是現在，痛死\",\n        \"data\": \"headache_occur=now\"\n      },\n      {\n        \"type\": \"postback\",\n        \"label\": \"讓我選時間\",\n        \"data\": \"headache_occur=selecttime\"\n      }\n    ]\n  }\n}",
+              "value": "={\n  \"type\": \"template\",\n  \"altText\": \"什麼時候頭痛的?\",\n  \"template\": {\n    \"type\": \"buttons\",\n    \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n    \"title\": \"什麼時候?\",\n    \"text\": \"選擇頭痛時間\",\n    \"actions\": [\n      {\n        \"type\": \"postback\",\n        \"label\": \"就是現在，痛死\",\n        \"data\": \"headache_occur=now\"\n      },\n      {\n        \"type\": \"datetimepicker\",\n        \"label\": \"讓我選時間\",\n        \"data\": \"headache_occur=selecttime\",\n        \"mode\": \"datetime\",\n        \"initial\": \"{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}\",\n        \"max\": \"{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00\",\n        \"min\": \"{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00\"\n      }\n    ]\n  }\n}",
               "type": "string"
             }
           ]
@@ -1047,12 +1041,6 @@
               "id": "e294c37d-c089-43ea-bacd-0e5e4e089bac",
               "name": "occur_time",
               "value": "={{ $('Webhook').item.json.body.events[0].postback.params.datetime }}",
-              "type": "string"
-            },
-            {
-              "id": "52dcedb7-acb9-4049-8964-240102e22203",
-              "name": "",
-              "value": "",
               "type": "string"
             }
           ]
@@ -1090,29 +1078,6 @@
       ],
       "id": "ebc7fd53-2723-43cb-9602-16b8a72983d1",
       "name": "Set Now Occur Time"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "54656fc8-fb23-49bf-a2fe-4f2615ea9655",
-              "name": "message",
-              "value": "={\n    \"type\": \"template\",\n    \"altText\": \"什麼時間頭痛的?\",\n    \"template\": {\n      \"type\": \"buttons\",\n      \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n      \"title\": \"什麼時候頭痛的\",\n      \"text\": \"要記錄唷\",\n      \"actions\": [\n        {\n          \"type\": \"datetimepicker\",\n          \"label\": \"頭痛的時間\",\n          \"data\": \"headache_occur_tmp=selecttime\",\n          \"mode\": \"datetime\",\n          \"initial\": \"{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}\",\n          \"max\": \"{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00\",\n          \"min\": \"{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00\"\n        }\n      ]\n    }\n  }",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        860,
-        800
-      ],
-      "id": "0e52e628-3046-4be3-b643-69609856490b",
-      "name": "Set Select Headache Time"
     },
     {
       "parameters": {
@@ -1631,7 +1596,7 @@
         ],
         [
           {
-            "node": "Set Select Headache Time",
+            "node": "Set Select Occur Time",
             "type": "main",
             "index": 0
           }
@@ -1821,17 +1786,6 @@
         [
           {
             "node": "Set Ask Headache Level",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Set Select Headache Time": {
-      "main": [
-        [
-          {
-            "node": "Response Drug Select",
             "type": "main",
             "index": 0
           }
