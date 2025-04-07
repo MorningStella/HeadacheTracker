@@ -50,6 +50,7 @@
                 "action": {
                   "type": "postback",
                   "label": "1",
+                  "text": "1 分痛",
                   "data": "pain_level=1 headache_occur_tmp={{$json.headache_occur}}"
                 },
                 "style": "primary",
@@ -61,6 +62,7 @@
                 "action": {
                   "type": "postback",
                   "label": "2",
+                  "text": "2 分痛",
                   "data": "pain_level=2 headache_occur_tmp={{$json.headache_occur}}"
                 },
                 "style": "primary",
@@ -72,6 +74,7 @@
                 "action": {
                   "type": "postback",
                   "label": "3",
+                  "text": "3 分痛",
                   "data": "pain_level=3 headache_occur_tmp={{$json.headache_occur}}"
                 },
                 "style": "primary",
@@ -89,6 +92,7 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
+                  "text": "4 分痛",
                   "label": "4",
                   "data": "pain_level=4"
                 },
@@ -100,6 +104,7 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
+                  "text": "5 分痛",
                   "label": "5",
                   "data": "pain_level=5 headache_occur_tmp={{$json.headache_occur}}"
                 },
@@ -111,6 +116,7 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
+                  "text": "6 分痛",
                   "label": "6",
                   "data": "pain_level=6 headache_occur_tmp={{$json.headache_occur}}"
                 },
@@ -129,6 +135,7 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
+                  "text": "7 分痛",
                   "label": "7",
                   "data": "pain_level=7 headache_occur_tmp={{$json.headache_occur}}"
                 },
@@ -140,6 +147,7 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
+                  "text": "8 分痛",
                   "label": "8",
                   "data": "pain_level=8 headache_occur_tmp={{$json.headache_occur}}"
                 },
@@ -151,6 +159,7 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
+                  "text": "9 分痛",
                   "label": "9",
                   "data": "pain_level=9 headache_occur_tmp={{$json.headache_occur}}"
                 },
@@ -170,6 +179,7 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
+                  "text": "超級無敵痛",
                   "label": "∞",
                   "data": "pain_level=infinite"
                 },
@@ -181,6 +191,7 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
+                  "text": "救救我...",
                   "label": "help",
                   "data": "pain_level=help"
                 },
