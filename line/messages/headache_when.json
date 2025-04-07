@@ -10,6 +10,7 @@
       {
         "type": "postback",
         "label": "就是現在，痛死",
+        "text": "就是現在",
         "data": "headache_occur=now"
       },
       {

@@ -1,6 +1,6 @@
 {
   "type": "flex",
-  "altText": "現在頭有幾分痛",
+  "altText": "哪裡頭痛",
   "contents": {
       "type": "bubble",
       "hero": {
@@ -8,11 +8,11 @@
         "size": "full",
         "aspectRatio": "20:13",
         "aspectMode": "cover",
+        "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdFop3Bho98bzeRdk-zS0YQhh1g6HDgM-05A&s",
         "action": {
           "type": "uri",
           "uri": "https://line.me/"
-        },
-        "url": "https://image1.gamme.com.tw/news2/2016/16/30/qZqYnaadkZ_brKQ.jpg"
+        }
       },
       "body": {
         "type": "box",
@@ -21,14 +21,14 @@
         "contents": [
           {
             "type": "text",
-            "text": "頭痛幾分",
+            "text": "頭痛部位",
             "weight": "bold",
             "size": "xl",
             "align": "center"
           },
           {
             "type": "text",
-            "text": "現在幾分痛",
+            "text": "請選擇目前頭痛的部位",
             "size": "md",
             "color": "#aaaaaa",
             "align": "center"
@@ -49,33 +49,21 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "label": "1",
-                  "text": "1 分痛",
-                  "data": "pain_level=1 headache_occur_tmp={{$json.headache_occur}}"
+                  "label": "左眼窩",
+                  "text": "左眼窩痛",
+                  "data": "headache_where=左眼窩;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}"
                 },
                 "style": "primary",
-                "color": "#91D3FA",
+                "color": "#5CBEF7",
                 "height": "sm"
               },
               {
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "label": "2",
-                  "text": "2 分痛",
-                  "data": "pain_level=2 headache_occur_tmp={{$json.headache_occur}}"
-                },
-                "style": "primary",
-                "color": "#76C9F9",
-                "height": "sm"
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "postback",
-                  "label": "3",
-                  "text": "3 分痛",
-                  "data": "pain_level=3 headache_occur_tmp={{$json.headache_occur}}"
+                  "label": "右眼窩",
+                  "text": "右眼窩痛",
+                  "data": "headache_where=右眼窩;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}"
                 },
                 "style": "primary",
                 "color": "#5CBEF7",
@@ -92,9 +80,9 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "text": "4 分痛",
-                  "label": "4",
-                  "data": "pain_level=4"
+                  "label": "左邊太陽穴",
+                  "text": "左邊太陽穴痛",
+                  "data": "headache_where=左邊太陽穴;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}"
                 },
                 "style": "primary",
                 "color": "#41B3F6",
@@ -104,21 +92,40 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "text": "5 分痛",
-                  "label": "5",
-                  "data": "pain_level=5 headache_occur_tmp={{$json.headache_occur}}"
+                  "label": "右邊太陽穴",
+                  "text": "右邊太陽穴痛",
+                  "data": "headache_where=右邊太陽穴;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}"
                 },
                 "style": "primary",
-                "color": "#26A9F4",
+                "color": "#41B3F6",
+                "height": "sm"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "左肩膀",
+                  "text": "左肩膀痛",
+                  "data": "headache_where=左肩膀;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}"
+                },
+                "style": "primary",
+                "color": "#0B9EF3",
                 "height": "sm"
               },
               {
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "text": "6 分痛",
-                  "label": "6",
-                  "data": "pain_level=6 headache_occur_tmp={{$json.headache_occur}}"
+                  "label": "右肩膀",
+                  "text": "右肩膀痛",
+                  "data": "headache_where=右肩膀;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}"
                 },
                 "style": "primary",
                 "color": "#0B9EF3",
@@ -135,21 +142,9 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "text": "7 分痛",
-                  "label": "7",
-                  "data": "pain_level=7 headache_occur_tmp={{$json.headache_occur}}"
-                },
-                "style": "primary",
-                "color": "#0A83CA",
-                "height": "sm"
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "postback",
-                  "text": "8 分痛",
-                  "label": "8",
-                  "data": "pain_level=8 headache_occur_tmp={{$json.headache_occur}}"
+                  "label": "左頸部",
+                  "text": "左頸部痛",
+                  "data": "headache_where=左頸部;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}"
                 },
                 "style": "primary",
                 "color": "#0869A0",
@@ -159,12 +154,12 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "text": "9 分痛",
-                  "label": "9",
-                  "data": "pain_level=9 headache_occur_tmp={{$json.headache_occur}}"
+                  "label": "右頸部",
+                  "text": "右頸部痛",
+                  "data": "headache_where=右頸部;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}"
                 },
                 "style": "primary",
-                "color": "#064E76",
+                "color": "#0869A0",
                 "height": "sm"
               }
             ]
@@ -179,25 +174,14 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "text": "超級無敵痛",
-                  "label": "∞",
-                  "data": "pain_level=infinite"
+                  "text": "沒有其他地方痛了",
+                  "label": "沒有其他地方痛",
+                  "data": "headache_ask=done headache_where_final={{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}"
                 },
                 "style": "primary",
-                "color": "#FF4500",
-                "height": "sm"
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "postback",
-                  "text": "救救我...",
-                  "label": "help",
-                  "data": "pain_level=help"
-                },
-                "style": "primary",
+                "color": "#32CD32",
                 "height": "sm",
-                "color": "#FF4500"
+                "adjustMode": "shrink-to-fit"
               }
             ]
           }
