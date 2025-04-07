@@ -9,8 +9,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -620,
-        -40
+        -1940,
+        -400
       ],
       "id": "58845eec-6361-4b48-8152-651a475ce30e",
       "name": "Webhook",
@@ -76,8 +76,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -400,
-        -40
+        -1460,
+        -380
       ],
       "id": "58fb4960-497c-4dbc-81a9-4465e1e8fdd8",
       "name": "Switch"
@@ -126,8 +126,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2380,
-        -440
+        2340,
+        -420
       ],
       "id": "29f944fb-bb16-4594-a9a9-0fdf2bec2d61",
       "name": "Response Drug Select"
@@ -432,31 +432,6 @@
                 },
                 "conditions": [
                   {
-                    "id": "b7044373-e276-49ba-ba03-c169ab9c0f4d",
-                    "leftValue": "={{ $json.headache_occur_tmp }}",
-                    "rightValue": "selecttime",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "done headache select time"
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 2
-                },
-                "conditions": [
-                  {
                     "id": "cf06cf4f-66be-45c9-8fcb-be1ba4590a6d",
                     "leftValue": "={{ $json.action_occur }}",
                     "rightValue": "now",
@@ -546,6 +521,56 @@
               },
               "renameOutput": true,
               "outputKey": "no headache select time"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7aa61cad-5c79-4dae-baf5-4f1d365c091d",
+                    "leftValue": "={{ $json.headache_where }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "select headache where again"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "fc7130a9-d548-4b89-9bfe-0378638c040c",
+                    "leftValue": "={{ $json.headache_ask }}",
+                    "rightValue": "done",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "headache ask done"
             }
           ]
         },
@@ -562,7 +587,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const input = $input.first().json.body.events[0].postback.data;\n\n// Use a single regex to capture key-value pairs for both long (--key=value) and short (-k=value) options\nconst regex = /([a-zA-Z0-9_]+)=([^\\s]*)/gu;\n\nlet matches;\nlet drug_type = null;\nlet drug_type_tmp = null;\nlet drug_number = null;\nlet drug_number_tmp = null;\nlet drug_datetime = null;\nlet pain_level = null;\nlet headache_occur = null;\nlet headache_occur_tmp = null;\nlet action_occur = null;\nlet action = null;\nlet no_headache_occur = null;\n\n// Loop through the matches\nwhile ((matches = regex.exec(input)) !== null) {\n    const key = matches[1] || matches[3]; // Get long option name or short key\n    var value = matches[2] || matches[4]; // Get the associated value\n    value = value.trimEnd()\n    // Assign to the appropriate variable based on the key\n    if (key === 'drug_type') {\n        drug_type = value;\n    } else if (key === 'drug_number') {\n        drug_number = value;\n    } else if (key === 'drug_datetime') {\n      drug_datetime = value;\n    } else if (key === 'drug_type_tmp') {\n      drug_type_tmp = value\n    } else if (key === 'drug_number_tmp') {\n      drug_number_tmp = value\n    } else if (key === 'pain_level') {\n      pain_level = value\n    } else if (key === 'headache_occur') {\n      headache_occur = value\n    } else if (key === 'headache_occur_tmp') {\n      headache_occur_tmp = value\n    } else if (key === 'action_occur') {\n      action_occur = value\n    } else if (key === 'action') {\n      action = value\n    } else if (key === 'no_headache_occur') {\n      no_headache_occur = value\n    }\n}\n\n// Return the results\nreturn { drug_datetime, drug_number, drug_type, drug_type_tmp, drug_number_tmp, pain_level, headache_occur, headache_occur_tmp, action_occur, action, no_headache_occur };"
+        "jsCode": "const input = $input.first().json.body.events[0].postback.data;\n\n// Use a single regex to capture key-value pairs for both long (--key=value) and short (-k=value) options\nconst regex = /([a-zA-Z0-9_]+)=([^\\s]*)/gu;\n\nlet matches;\nlet drug_type = null;\nlet drug_type_tmp = null;\nlet drug_number = null;\nlet drug_number_tmp = null;\nlet drug_datetime = null;\nlet pain_level = null;\nlet pain_level_tmp = null;\nlet headache_occur = null;\nlet headache_occur_tmp = null;\nlet action_occur = null;\nlet action = null;\nlet no_headache_occur = null;\nlet headache_where = null;\nlet headache_where_final = null;\nlet headache_ask = null;\n\n// Loop through the matches\nwhile ((matches = regex.exec(input)) !== null) {\n    const key = matches[1] || matches[3]; // Get long option name or short key\n    var value = matches[2] || matches[4]; // Get the associated value\n    value = value.trimEnd()\n    // Assign to the appropriate variable based on the key\n    if (key === 'drug_type') {\n        drug_type = value;\n    } else if (key === 'drug_number') {\n        drug_number = value;\n    } else if (key === 'drug_datetime') {\n      drug_datetime = value;\n    } else if (key === 'drug_type_tmp') {\n      drug_type_tmp = value\n    } else if (key === 'drug_number_tmp') {\n      drug_number_tmp = value\n    } else if (key === 'pain_level') {\n      pain_level = value\n    } else if (key === 'pain_level_tmp') {\n      pain_level_tmp = value\n    } else if (key === 'headache_occur') {\n      headache_occur = value\n    } else if (key === 'headache_occur_tmp') {\n      headache_occur_tmp = value\n    } else if (key === 'action_occur') {\n      action_occur = value\n    } else if (key === 'action') {\n      action = value\n    } else if (key === 'no_headache_occur') {\n      no_headache_occur = value\n    } else if (key === 'headache_where') {\n      headache_where = value\n    } else if (key === 'headache_where_final') {\n      headache_where_final = value\n    } else if (key === 'headache_ask') {\n      headache_ask = value\n    }\n}\n\n// Return the results\nreturn { drug_datetime, drug_number, drug_type, drug_type_tmp, drug_number_tmp, pain_level, headache_occur, headache_occur_tmp, action_occur, action, no_headache_occur, headache_where, headache_where_final, pain_level_tmp, headache_ask };"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -864,7 +889,7 @@
             {
               "id": "1366a377-4f67-4f9f-9304-89d8859906fb",
               "name": "message",
-              "value": "={\n  \"type\": \"flex\",\n  \"altText\": \"現在頭有幾分痛\",\n  \"contents\": {\n      \"type\": \"bubble\",\n      \"hero\": {\n        \"type\": \"image\",\n        \"size\": \"full\",\n        \"aspectRatio\": \"20:13\",\n        \"aspectMode\": \"cover\",\n        \"action\": {\n          \"type\": \"uri\",\n          \"uri\": \"https://line.me/\"\n        },\n        \"url\": \"https://image1.gamme.com.tw/news2/2016/16/30/qZqYnaadkZ_brKQ.jpg\"\n      },\n      \"body\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"md\",\n        \"contents\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"頭痛幾分\",\n            \"weight\": \"bold\",\n            \"size\": \"xl\",\n            \"align\": \"center\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"現在幾分痛\",\n            \"size\": \"md\",\n            \"color\": \"#aaaaaa\",\n            \"align\": \"center\"\n          }\n        ]\n      },\n      \"footer\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"1\",\n                  \"data\": \"pain_level=1 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#91D3FA\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"2\",\n                  \"data\": \"pain_level=2 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#76C9F9\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"3\",\n                  \"data\": \"pain_level=3 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#5CBEF7\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"4\",\n                  \"data\": \"pain_level=4 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#41B3F6\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"5\",\n                  \"data\": \"pain_level=5 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#26A9F4\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"6\",\n                  \"data\": \"pain_level=6 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0B9EF3\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"7\",\n                  \"data\": \"pain_level=7 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0A83CA\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"8\",\n                  \"data\": \"pain_level=8 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0869A0\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"9\",\n                  \"data\": \"pain_level=9 headache_occur_tmp={{ $json.occur_time }}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#064E76\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"margin\": \"md\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"∞\",\n                  \"data\": \"pain_level=infinite\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#FF4500\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"help\",\n                  \"data\": \"pain_level=help\"\n                },\n                \"style\": \"primary\",\n                \"height\": \"sm\",\n                \"color\": \"#FF4500\"\n              }\n            ]\n          }\n        ]\n      }\n    }\n}",
+              "value": "={\n  \"type\": \"flex\",\n  \"altText\": \"現在頭有幾分痛\",\n  \"contents\": {\n      \"type\": \"bubble\",\n      \"hero\": {\n        \"type\": \"image\",\n        \"size\": \"full\",\n        \"aspectRatio\": \"20:13\",\n        \"aspectMode\": \"cover\",\n        \"action\": {\n          \"type\": \"uri\",\n          \"uri\": \"https://line.me/\"\n        },\n        \"url\": \"https://image1.gamme.com.tw/news2/2016/16/30/qZqYnaadkZ_brKQ.jpg\"\n      },\n      \"body\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"md\",\n        \"contents\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"頭痛幾分\",\n            \"weight\": \"bold\",\n            \"size\": \"xl\",\n            \"align\": \"center\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"現在幾分痛\",\n            \"size\": \"md\",\n            \"color\": \"#aaaaaa\",\n            \"align\": \"center\"\n          }\n        ]\n      },\n      \"footer\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"1\",\n                  \"text\": \"1 分痛\",\n                  \"data\": \"pain_level=1 headache_occur_tmp={{$json.occur_time}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#91D3FA\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"2\",\n                  \"text\": \"2 分痛\",\n                  \"data\": \"pain_level=2 headache_occur_tmp={{$json.occur_time}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#76C9F9\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"3\",\n                  \"text\": \"3 分痛\",\n                  \"data\": \"pain_level=3 headache_occur_tmp={{$json.occur_time}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#5CBEF7\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"4 分痛\",\n                  \"label\": \"4\",\n                  \"data\": \"pain_level=4\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#41B3F6\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"5 分痛\",\n                  \"label\": \"5\",\n                  \"data\": \"pain_level=5 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#26A9F4\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"6 分痛\",\n                  \"label\": \"6\",\n                  \"data\": \"pain_level=6 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0B9EF3\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"7 分痛\",\n                  \"label\": \"7\",\n                  \"data\": \"pain_level=7 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0A83CA\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"8 分痛\",\n                  \"label\": \"8\",\n                  \"data\": \"pain_level=8 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0869A0\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"9 分痛\",\n                  \"label\": \"9\",\n                  \"data\": \"pain_level=9 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#064E76\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"margin\": \"md\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"超級無敵痛\",\n                  \"label\": \"∞\",\n                  \"data\": \"pain_level=infinite\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#FF4500\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"救救我...\",\n                  \"label\": \"help\",\n                  \"data\": \"pain_level=help\"\n                },\n                \"style\": \"primary\",\n                \"height\": \"sm\",\n                \"color\": \"#FF4500\"\n              }\n            ]\n          }\n        ]\n      }\n    }\n}",
               "type": "string"
             }
           ]
@@ -892,8 +917,14 @@
             },
             {
               "id": "fb60b723-f225-4590-9bc9-5357c4d39250",
-              "name": "occurred_time",
+              "name": "headache_occur",
               "value": "={{ $json.headache_occur_tmp }}",
+              "type": "string"
+            },
+            {
+              "id": "883b78ac-f64b-4afc-a867-31f79bf9f6cc",
+              "name": "existed_headache_where",
+              "value": "",
               "type": "string"
             }
           ]
@@ -958,8 +989,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        900,
-        -260
+        2080,
+        -780
       ],
       "id": "e84cf722-fa3e-4a6d-bc4a-a68ed8bb34da",
       "name": "Google Sheets3",
@@ -991,8 +1022,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1080,
-        -260
+        2260,
+        -780
       ],
       "id": "d67727c0-de75-4dfa-a6f4-fb01aa13ea53",
       "name": "Response Success2"
@@ -1017,7 +1048,7 @@
             {
               "id": "4bd62c6c-fc23-4108-ad16-74c8366cc27b",
               "name": "message",
-              "value": "={\n  \"type\": \"template\",\n  \"altText\": \"什麼時候頭痛的?\",\n  \"template\": {\n    \"type\": \"buttons\",\n    \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n    \"title\": \"什麼時候?\",\n    \"text\": \"選擇頭痛時間\",\n    \"actions\": [\n      {\n        \"type\": \"postback\",\n        \"label\": \"就是現在，痛死\",\n        \"data\": \"headache_occur=now\"\n      },\n      {\n        \"type\": \"datetimepicker\",\n        \"label\": \"讓我選時間\",\n        \"data\": \"headache_occur=selecttime\",\n        \"mode\": \"datetime\",\n        \"initial\": \"{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}\",\n        \"max\": \"{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00\",\n        \"min\": \"{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00\"\n      }\n    ]\n  }\n}",
+              "value": "={\n  \"type\": \"template\",\n  \"altText\": \"什麼時候頭痛的?\",\n  \"template\": {\n    \"type\": \"buttons\",\n    \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n    \"title\": \"什麼時候?\",\n    \"text\": \"選擇頭痛時間\",\n    \"actions\": [\n      {\n        \"type\": \"postback\",\n        \"label\": \"就是現在，痛死\",\n        \"text\": \"就是現在\",\n        \"data\": \"headache_occur=now\"\n      },\n      {\n        \"type\": \"datetimepicker\",\n        \"label\": \"讓我選時間\",\n        \"text\": \"讓我選時間\",\n        \"data\": \"headache_occur=selecttime\",\n        \"mode\": \"datetime\",\n        \"initial\": \"{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}\",\n        \"max\": \"{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00\",\n        \"min\": \"{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00\"\n      }\n    ]\n  }\n}",
               "type": "string"
             }
           ]
@@ -1039,7 +1070,7 @@
           "assignments": [
             {
               "id": "e294c37d-c089-43ea-bacd-0e5e4e089bac",
-              "name": "occur_time",
+              "name": "headache_occur",
               "value": "={{ $('Webhook').item.json.body.events[0].postback.params.datetime }}",
               "type": "string"
             }
@@ -1062,7 +1093,7 @@
           "assignments": [
             {
               "id": "ceb5e266-ed7d-4da9-84eb-2340ebe85914",
-              "name": "occur_time",
+              "name": "headache_occur",
               "value": "={{ $now.format('yyyy-MM-ddTHH:mm') }}",
               "type": "string"
             }
@@ -1452,6 +1483,115 @@
       ],
       "id": "f0fdb4a2-8844-47bd-b315-b3d8eef4d446",
       "name": "Set No Headache Select Time"
+    },
+    {
+      "parameters": {
+        "content": "## Set Pain Level\n",
+        "height": 180,
+        "width": 320,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        -820
+      ],
+      "id": "0f8f1cbe-f69a-47a3-9310-ddedfb9cd430",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d9342c09-16cd-45be-a326-96a0006928a8",
+              "name": "message",
+              "value": "={\n  \"type\": \"flex\",\n  \"altText\": \"哪裡頭痛\",\n  \"contents\": {\n      \"type\": \"bubble\",\n      \"hero\": {\n        \"type\": \"image\",\n        \"size\": \"full\",\n        \"aspectRatio\": \"20:13\",\n        \"aspectMode\": \"cover\",\n        \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdFop3Bho98bzeRdk-zS0YQhh1g6HDgM-05A&s\",\n        \"action\": {\n          \"type\": \"uri\",\n          \"uri\": \"https://line.me/\"\n        }\n      },\n      \"body\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"md\",\n        \"contents\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"頭痛部位\",\n            \"weight\": \"bold\",\n            \"size\": \"xl\",\n            \"align\": \"center\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"請選擇目前頭痛的部位\",\n            \"size\": \"md\",\n            \"color\": \"#aaaaaa\",\n            \"align\": \"center\"\n          }\n        ]\n      },\n      \"footer\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"左眼窩\",\n                  \"text\": \"左眼窩痛\",\n                  \"data\": \"headache_where=左眼窩;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#5CBEF7\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"右眼窩\",\n                  \"text\": \"右眼窩痛\",\n                  \"data\": \"headache_where=右眼窩;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#5CBEF7\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"左邊太陽穴\",\n                  \"text\": \"左邊太陽穴痛\",\n                  \"data\": \"headache_where=左邊太陽穴;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#41B3F6\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"右邊太陽穴\",\n                  \"text\": \"右邊太陽穴痛\",\n                  \"data\": \"headache_where=右邊太陽穴;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#41B3F6\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"左肩膀\",\n                  \"text\": \"左肩膀痛\",\n                  \"data\": \"headache_where=左肩膀;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0B9EF3\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"右肩膀\",\n                  \"text\": \"右肩膀痛\",\n                  \"data\": \"headache_where=右肩膀;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0B9EF3\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"左頸部\",\n                  \"text\": \"左頸部痛\",\n                  \"data\": \"headache_where=左頸部;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0869A0\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"右頸部\",\n                  \"text\": \"右頸部痛\",\n                  \"data\": \"headache_where=右頸部;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0869A0\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"margin\": \"md\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"沒有其他地方痛\",\n                  \"data\": \"headache_ask=done headache_where_final={{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#32CD32\",\n                \"height\": \"sm\",\n                \"adjustMode\": \"shrink-to-fit\"\n              }\n            ]\n          }\n        ]\n      }\n    }\n}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        920,
+        -260
+      ],
+      "id": "ccafb0ea-f3b7-4963-acfd-0d769be0b4b3",
+      "name": "Set Ask Headache Where"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5a1b1fe6-a7f7-4c3e-b1b9-71c222fa6386",
+              "name": "existed_headache_where",
+              "value": "={{ $json.headache_where }}",
+              "type": "string"
+            },
+            {
+              "id": "c13011f9-18b1-4e46-baeb-45aa57927fcf",
+              "name": "pain_level",
+              "value": "={{ $json.pain_level_tmp }}",
+              "type": "string"
+            },
+            {
+              "id": "0b327f76-b8b6-4f17-b17d-7e78e4bdfe68",
+              "name": "headache_occur",
+              "value": "={{ $json.headache_occur_tmp }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        340,
+        160
+      ],
+      "id": "422c7164-9d7e-45c1-8b30-6fd85d8ac98c",
+      "name": "Set Existed Headache Where"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4763c5c0-c839-46fb-bfa9-8f5a42150277",
+              "name": "headache_where",
+              "value": "={{ $json.headache_where_final }}",
+              "type": "string"
+            },
+            {
+              "id": "e1ccd62f-a92e-4c14-87a9-f4eea5031e9b",
+              "name": "pain_level",
+              "value": "={{ $json.pain_level_tmp }}",
+              "type": "string"
+            },
+            {
+              "id": "247b6223-91b0-4ff2-b78a-888170388eb8",
+              "name": "headache_occur",
+              "value": "={{ $json.headache_occur_tmp }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        600,
+        -1080
+      ],
+      "id": "88178774-19ca-4ada-8a99-b1f8c796ddda",
+      "name": "Set Insert Ask Headache Data"
     }
   ],
   "connections": {
@@ -1580,13 +1720,6 @@
         ],
         [
           {
-            "node": "Set Select Occur Time",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
             "node": "Set Action Occur Now",
             "type": "main",
             "index": 0
@@ -1609,6 +1742,20 @@
         [
           {
             "node": "Set No Headache Select Time",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Existed Headache Where",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Insert Ask Headache Data",
             "type": "main",
             "index": 0
           }
@@ -1707,7 +1854,7 @@
       "main": [
         [
           {
-            "node": "Google Sheets3",
+            "node": "Set Ask Headache Where",
             "type": "main",
             "index": 0
           }
@@ -1873,6 +2020,39 @@
         [
           {
             "node": "Set No Headache Insert Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Ask Headache Where": {
+      "main": [
+        [
+          {
+            "node": "Response Drug Select",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Existed Headache Where": {
+      "main": [
+        [
+          {
+            "node": "Set Ask Headache Where",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Insert Ask Headache Data": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets3",
             "type": "main",
             "index": 0
           }
