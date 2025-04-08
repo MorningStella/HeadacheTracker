@@ -10,6 +10,7 @@
         {
           "type": "postback",
           "label": "現在不痛了",
+          "text": "現在不痛了",
           "data": "no_headache_occur=now"
         },
         {
