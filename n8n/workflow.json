@@ -681,74 +681,6 @@
     },
     {
       "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
-          "mode": "list",
-          "cachedResultName": "頭痛 sheet",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "工作表1",
-          "mode": "name"
-        },
-        "columns": {
-          "mappingMode": "autoMapInputData",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "drug_type",
-              "displayName": "drug_type",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "drug_number",
-              "displayName": "drug_number",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "drug_datetime",
-              "displayName": "drug_datetime",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        900,
-        -420
-      ],
-      "id": "0a191afd-f24c-414e-a76f-0dca4c91b09f",
-      "name": "Google Sheets",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Ih53FiJ3YzQzkiYH",
-          "name": "devin.lin.gss Google Sheets "
-        }
-      }
-    },
-    {
-      "parameters": {
         "method": "POST",
         "url": "https://api.line.me/v2/bot/message/reply",
         "sendHeaders": true,
@@ -773,87 +705,6 @@
       ],
       "id": "edf440d3-3943-488a-8763-c8214fc30858",
       "name": "Response Success"
-    },
-    {
-      "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
-          "mode": "list",
-          "cachedResultName": "頭痛 sheet",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": 226063752,
-          "mode": "list",
-          "cachedResultName": "工作表3",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit#gid=226063752"
-        },
-        "options": {
-          "dataLocationOnSheet": {
-            "values": {
-              "rangeDefinition": "detectAutomatically",
-              "readRowsUntil": "firstEmptyRow"
-            }
-          },
-          "returnFirstMatch": false
-        }
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        -920,
-        580
-      ],
-      "id": "059b5e22-abfd-4f38-bf5d-6f34a809be37",
-      "name": "Google Sheets1",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Ih53FiJ3YzQzkiYH",
-          "name": "devin.lin.gss Google Sheets "
-        }
-      }
-    },
-    {
-      "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
-          "mode": "list",
-          "cachedResultName": "頭痛 sheet",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "工作表1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit#gid=0"
-        },
-        "options": {
-          "dataLocationOnSheet": {
-            "values": {
-              "rangeDefinition": "specifyRange",
-              "firstDataRow": "={{ $json.row_number - 2 }} "
-            }
-          }
-        }
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        -600,
-        560
-      ],
-      "id": "5896c8e5-e7d2-4286-b0a8-acccf5f0242f",
-      "name": "Google Sheets2",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Ih53FiJ3YzQzkiYH",
-          "name": "devin.lin.gss Google Sheets "
-        }
-      }
     },
     {
       "parameters": {
@@ -942,67 +793,6 @@
     },
     {
       "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
-          "mode": "list",
-          "cachedResultName": "頭痛 sheet",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "工作表4",
-          "mode": "name"
-        },
-        "columns": {
-          "mappingMode": "autoMapInputData",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "pain_level",
-              "displayName": "pain_level",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "occurred_time",
-              "displayName": "occurred_time",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        2080,
-        -780
-      ],
-      "id": "e84cf722-fa3e-4a6d-bc4a-a68ed8bb34da",
-      "name": "Google Sheets3",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Ih53FiJ3YzQzkiYH",
-          "name": "devin.lin.gss Google Sheets "
-        }
-      }
-    },
-    {
-      "parameters": {
         "method": "POST",
         "url": "https://api.line.me/v2/bot/message/reply",
         "sendHeaders": true,
@@ -1016,7 +806,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": \"在 {{ $json.occurred_time }} 出現了 {{ $json.pain_level }} 級頭痛\"\n}\n]\n}",
+        "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": \"在 {{ $json.headache_occur }} 出現了 {{ $json.pain_level }} 級頭痛\"\n}\n]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1094,7 +884,7 @@
             {
               "id": "ceb5e266-ed7d-4da9-84eb-2340ebe85914",
               "name": "headache_occur",
-              "value": "={{ $now.format('yyyy-MM-ddTHH:mm') }}",
+              "value": "={{ $now.format('yyyy-MM-dd') }}T{{ $now.format('HH:mm') }}",
               "type": "string"
             }
           ]
@@ -1155,69 +945,6 @@
       ],
       "id": "1b19d761-cc2f-44d8-bbe2-10b5ec24716a",
       "name": "Set Action Occur Now"
-    },
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
-          "mode": "list",
-          "cachedResultName": "頭痛 sheet",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": 1264830793,
-          "mode": "list",
-          "cachedResultName": "行動表",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit#gid=1264830793"
-        },
-        "columns": {
-          "mappingMode": "autoMapInputData",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "action",
-              "displayName": "action",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "occur_time",
-              "displayName": "occur_time",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        1320,
-        420
-      ],
-      "id": "f58accbd-2023-4f8b-8485-b7d1b685d855",
-      "name": "Write Action",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Ih53FiJ3YzQzkiYH",
-          "name": "devin.lin.gss Google Sheets "
-        }
-      }
     },
     {
       "parameters": {
@@ -1292,8 +1019,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1580,
-        440
+        1500,
+        400
       ],
       "id": "833b48ef-b20b-4d5d-827a-435b71c77666",
       "name": "Response Action"
@@ -1305,7 +1032,7 @@
             {
               "id": "a3294e08-8654-446d-ba62-1a9d27fcdace",
               "name": "message",
-              "value": "={\n    \"type\": \"template\",\n    \"altText\": \"什麼時候不痛的?\",\n    \"template\": {\n      \"type\": \"buttons\",\n      \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n      \"title\": \"什麼時候不痛了?\",\n      \"text\": \"恭喜你!\",\n      \"actions\": [\n        {\n          \"type\": \"postback\",\n          \"label\": \"現在不痛了\",\n          \"data\": \"no_headache_occur=now\"\n        },\n        {\n          \"type\": \"datetimepicker\",\n          \"label\": \"選擇時間\",\n          \"data\": \"no_headache_occur=selecttime\",\n          \"mode\": \"datetime\",\n          \"initial\": \"{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}\",\n          \"max\": \"{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00\",\n          \"min\": \"{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00\"\n         }\n      ]\n    }\n  }",
+              "value": "={\n    \"type\": \"template\",\n    \"altText\": \"什麼時候不痛的?\",\n    \"template\": {\n      \"type\": \"buttons\",\n      \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n      \"title\": \"什麼時候不痛了?\",\n      \"text\": \"恭喜你!\",\n      \"actions\": [\n        {\n          \"type\": \"postback\",\n          \"label\": \"現在不痛了\",\n          \"text\": \"現在不痛了\",\n          \"data\": \"no_headache_occur=now\"\n        },\n        {\n          \"type\": \"datetimepicker\",\n          \"label\": \"選擇時間\",\n          \"data\": \"no_headache_occur=selecttime\",\n          \"mode\": \"datetime\",\n          \"initial\": \"{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}\",\n          \"max\": \"{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00\",\n          \"min\": \"{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00\"\n         }\n      ]\n    }\n  }",
               "type": "string"
             }
           ]
@@ -1372,67 +1099,6 @@
       ],
       "id": "78e9b959-2a44-4c82-ae76-90d2c0cea4d9",
       "name": "Set No Headache Insert Data"
-    },
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
-          "mode": "list",
-          "cachedResultName": "頭痛 sheet",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "工作表4",
-          "mode": "name"
-        },
-        "columns": {
-          "mappingMode": "autoMapInputData",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "pain_level",
-              "displayName": "pain_level",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "occurred_time",
-              "displayName": "occurred_time",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        1360,
-        700
-      ],
-      "id": "c0d917b5-c465-444d-8204-4878be3731d7",
-      "name": "Google Sheets4",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Ih53FiJ3YzQzkiYH",
-          "name": "devin.lin.gss Google Sheets "
-        }
-      }
     },
     {
       "parameters": {
@@ -1507,7 +1173,7 @@
             {
               "id": "d9342c09-16cd-45be-a326-96a0006928a8",
               "name": "message",
-              "value": "={\n  \"type\": \"flex\",\n  \"altText\": \"哪裡頭痛\",\n  \"contents\": {\n      \"type\": \"bubble\",\n      \"hero\": {\n        \"type\": \"image\",\n        \"size\": \"full\",\n        \"aspectRatio\": \"20:13\",\n        \"aspectMode\": \"cover\",\n        \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdFop3Bho98bzeRdk-zS0YQhh1g6HDgM-05A&s\",\n        \"action\": {\n          \"type\": \"uri\",\n          \"uri\": \"https://line.me/\"\n        }\n      },\n      \"body\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"md\",\n        \"contents\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"頭痛部位\",\n            \"weight\": \"bold\",\n            \"size\": \"xl\",\n            \"align\": \"center\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"請選擇目前頭痛的部位\",\n            \"size\": \"md\",\n            \"color\": \"#aaaaaa\",\n            \"align\": \"center\"\n          }\n        ]\n      },\n      \"footer\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"左眼窩\",\n                  \"text\": \"左眼窩痛\",\n                  \"data\": \"headache_where=左眼窩;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#5CBEF7\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"右眼窩\",\n                  \"text\": \"右眼窩痛\",\n                  \"data\": \"headache_where=右眼窩;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#5CBEF7\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"左邊太陽穴\",\n                  \"text\": \"左邊太陽穴痛\",\n                  \"data\": \"headache_where=左邊太陽穴;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#41B3F6\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"右邊太陽穴\",\n                  \"text\": \"右邊太陽穴痛\",\n                  \"data\": \"headache_where=右邊太陽穴;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#41B3F6\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"左肩膀\",\n                  \"text\": \"左肩膀痛\",\n                  \"data\": \"headache_where=左肩膀;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0B9EF3\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"右肩膀\",\n                  \"text\": \"右肩膀痛\",\n                  \"data\": \"headache_where=右肩膀;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0B9EF3\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"左頸部\",\n                  \"text\": \"左頸部痛\",\n                  \"data\": \"headache_where=左頸部;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0869A0\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"右頸部\",\n                  \"text\": \"右頸部痛\",\n                  \"data\": \"headache_where=右頸部;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0869A0\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"margin\": \"md\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"沒有其他地方痛\",\n                  \"data\": \"headache_ask=done headache_where_final={{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#32CD32\",\n                \"height\": \"sm\",\n                \"adjustMode\": \"shrink-to-fit\"\n              }\n            ]\n          }\n        ]\n      }\n    }\n}",
+              "value": "={\n  \"type\": \"flex\",\n  \"altText\": \"哪裡頭痛\",\n  \"contents\": {\n      \"type\": \"bubble\",\n      \"hero\": {\n        \"type\": \"image\",\n        \"size\": \"full\",\n        \"aspectRatio\": \"20:13\",\n        \"aspectMode\": \"cover\",\n        \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdFop3Bho98bzeRdk-zS0YQhh1g6HDgM-05A&s\",\n        \"action\": {\n          \"type\": \"uri\",\n          \"uri\": \"https://line.me/\"\n        }\n      },\n      \"body\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"md\",\n        \"contents\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"頭痛部位\",\n            \"weight\": \"bold\",\n            \"size\": \"xl\",\n            \"align\": \"center\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"請選擇目前頭痛的部位\",\n            \"size\": \"md\",\n            \"color\": \"#aaaaaa\",\n            \"align\": \"center\"\n          }\n        ]\n      },\n      \"footer\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"左眼窩\",\n                  \"text\": \"左眼窩痛\",\n                  \"data\": \"headache_where=左眼窩;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#5CBEF7\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"右眼窩\",\n                  \"text\": \"右眼窩痛\",\n                  \"data\": \"headache_where=右眼窩;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#5CBEF7\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"左邊太陽穴\",\n                  \"text\": \"左邊太陽穴痛\",\n                  \"data\": \"headache_where=左邊太陽穴;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#41B3F6\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"右邊太陽穴\",\n                  \"text\": \"右邊太陽穴痛\",\n                  \"data\": \"headache_where=右邊太陽穴;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#41B3F6\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"左肩膀\",\n                  \"text\": \"左肩膀痛\",\n                  \"data\": \"headache_where=左肩膀;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0B9EF3\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"右肩膀\",\n                  \"text\": \"右肩膀痛\",\n                  \"data\": \"headache_where=右肩膀;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0B9EF3\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"左頸部\",\n                  \"text\": \"左頸部痛\",\n                  \"data\": \"headache_where=左頸部;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0869A0\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"右頸部\",\n                  \"text\": \"右頸部痛\",\n                  \"data\": \"headache_where=右頸部;{{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0869A0\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"margin\": \"md\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"沒有其他地方痛了\",\n                  \"label\": \"沒有其他地方痛\",\n                  \"data\": \"headache_ask=done headache_where_final={{$json.existed_headache_where}} pain_level_tmp={{$json.pain_level}} headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#32CD32\",\n                \"height\": \"sm\",\n                \"adjustMode\": \"shrink-to-fit\"\n              }\n            ]\n          }\n        ]\n      }\n    }\n}",
               "type": "string"
             }
           ]
@@ -1592,6 +1258,143 @@
       ],
       "id": "88178774-19ca-4ada-8a99-b1f8c796ddda",
       "name": "Set Insert Ask Headache Data"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "lFSOddL888aZLb33",
+          "mode": "list",
+          "cachedResultName": "Write Headache Level Data"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1500,
+        -880
+      ],
+      "id": "72db1af6-d14e-4f38-965d-dedb35d1968f",
+      "name": "Write Headache Level"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "w29n7YyVIeUEKaZF",
+          "mode": "list",
+          "cachedResultName": "Write Medicine Usage"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        920,
+        -420
+      ],
+      "id": "36840dfe-ca85-4894-822b-0ea275736f9e",
+      "name": "Write Medicine Usage"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "lFSOddL888aZLb33",
+          "mode": "list",
+          "cachedResultName": "Write Headache Level Data"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1300,
+        700
+      ],
+      "id": "d3653609-9335-4d89-ac8b-b977468febc2",
+      "name": "write no headache"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "lFSOddL888aZLb33",
+          "mode": "list",
+          "cachedResultName": "Write Headache Level Data"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1320,
+        400
+      ],
+      "id": "302a1bc8-4510-47c0-bf15-ada0a5220a2f",
+      "name": "Execute Workflow"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "H9yAS8OUuT2mVOq7",
+          "mode": "list",
+          "cachedResultName": "List Latest Medicine Usage"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -880,
+        620
+      ],
+      "id": "1c1b3d9c-e7b2-4320-b486-6961dbefaf58",
+      "name": "Execute Workflow1"
     }
   ],
   "connections": {
@@ -1653,7 +1456,7 @@
         ],
         [
           {
-            "node": "Google Sheets1",
+            "node": "Execute Workflow1",
             "type": "main",
             "index": 0
           }
@@ -1799,40 +1602,7 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets": {
-      "main": [
-        [
-          {
-            "node": "Response Success",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets1": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets2": {
-      "main": [
-        [
-          {
-            "node": "Code1",
+            "node": "Write Medicine Usage",
             "type": "main",
             "index": 0
           }
@@ -1855,17 +1625,6 @@
         [
           {
             "node": "Set Ask Headache Where",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets3": {
-      "main": [
-        [
-          {
-            "node": "Response Success2",
             "type": "main",
             "index": 0
           }
@@ -1938,22 +1697,11 @@
         ]
       ]
     },
-    "Write Action": {
-      "main": [
-        [
-          {
-            "node": "Response Action",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Set Action Insertion Data": {
       "main": [
         [
           {
-            "node": "Write Action",
+            "node": "Execute Workflow",
             "type": "main",
             "index": 0
           }
@@ -1997,18 +1745,7 @@
       "main": [
         [
           {
-            "node": "Google Sheets4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets4": {
-      "main": [
-        [
-          {
-            "node": "Response Success3",
+            "node": "write no headache",
             "type": "main",
             "index": 0
           }
@@ -2052,7 +1789,51 @@
       "main": [
         [
           {
-            "node": "Google Sheets3",
+            "node": "Write Headache Level",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Headache Level": {
+      "main": [
+        [
+          {
+            "node": "Response Success2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "write no headache": {
+      "main": [
+        [
+          {
+            "node": "Response Success3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow": {
+      "main": [
+        [
+          {
+            "node": "Response Action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow1": {
+      "main": [
+        [
+          {
+            "node": "Code1",
             "type": "main",
             "index": 0
           }
