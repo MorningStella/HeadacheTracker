@@ -1,102 +1,124 @@
 {
-    "nodes": [
-      {
-        "parameters": {
-          "inputSource": "passthrough"
-        },
-        "type": "n8n-nodes-base.executeWorkflowTrigger",
-        "typeVersion": 1.1,
-        "position": [
-          -160,
-          -60
-        ],
-        "id": "c397376e-f54f-4153-9cd9-9ec50c37a14e",
-        "name": "When Executed by Another Workflow"
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
       },
-      {
-        "parameters": {
-          "operation": "append",
-          "documentId": {
-            "__rl": true,
-            "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
-            "mode": "list",
-            "cachedResultName": "頭痛 sheet",
-            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
-          },
-          "sheetName": {
-            "__rl": true,
-            "value": "工作表1",
-            "mode": "name"
-          },
-          "columns": {
-            "mappingMode": "autoMapInputData",
-            "value": {},
-            "matchingColumns": [],
-            "schema": [
-              {
-                "id": "drug_type",
-                "displayName": "drug_type",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "drug_number",
-                "displayName": "drug_number",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "drug_datetime",
-                "displayName": "drug_datetime",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              }
-            ],
-            "attemptToConvertTypes": false,
-            "convertFieldsToString": false
-          },
-          "options": {}
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -160,
+        -60
+      ],
+      "id": "c397376e-f54f-4153-9cd9-9ec50c37a14e",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
+          "mode": "list",
+          "cachedResultName": "頭痛 sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
         },
-        "type": "n8n-nodes-base.googleSheets",
-        "typeVersion": 4.5,
-        "position": [
-          80,
-          -60
-        ],
-        "id": "05c445cb-6852-4ccf-bab4-5ca3d33751c5",
-        "name": "Google Sheets",
-        "credentials": {
-          "googleSheetsOAuth2Api": {
-            "id": "Ih53FiJ3YzQzkiYH",
-            "name": "devin.lin.gss Google Sheets "
-          }
+        "sheetName": {
+          "__rl": true,
+          "value": "工作表1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "drug_type",
+              "displayName": "drug_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "drug_number",
+              "displayName": "drug_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "drug_datetime",
+              "displayName": "drug_datetime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        80,
+        -60
+      ],
+      "id": "05c445cb-6852-4ccf-bab4-5ca3d33751c5",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Ih53FiJ3YzQzkiYH",
+          "name": "devin.lin.gss Google Sheets "
         }
       }
-    ],
-    "connections": {
-      "When Executed by Another Workflow": {
-        "main": [
-          [
-            {
-              "node": "Google Sheets",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      }
     },
-    "pinData": {},
-    "meta": {
-      "instanceId": "eb24dce5d4aef556d676bc7f743db645da668ad0a28698a3baf0616aa1f0314b"
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "medicine_usage",
+        "fields": "drug_type,drug_datetime,drug_number",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        100,
+        140
+      ],
+      "id": "85ab6b12-2184-4c25-adfd-86fb4b87cf44",
+      "name": "MongoDB",
+      "credentials": {
+        "mongoDb": {
+          "id": "MogmGKazdDdMwfXy",
+          "name": "devin-lin headache tracker"
+        }
+      }
     }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "eb24dce5d4aef556d676bc7f743db645da668ad0a28698a3baf0616aa1f0314b"
   }
+}

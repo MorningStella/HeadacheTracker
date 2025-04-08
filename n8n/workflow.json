@@ -663,7 +663,7 @@
             {
               "id": "91bb2ed6-949f-4a0a-a0fc-725d208e0d22",
               "name": "drug_datetime",
-              "value": "={{ $('Webhook').item.json.body.events[0].postback.params.datetime.toDateTime().format('yyyy-MM-ddTHH:mm') }}",
+              "value": "={{ $('Webhook').item.json.body.events[0].postback.params.datetime.toDateTime().format('yyyy-MM-ddT') }}T{{ $('Webhook').item.json.body.events[0].postback.params.datetime.toDateTime().format('HH:mm') }}",
               "type": "string"
             }
           ]
@@ -700,7 +700,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1080,
+        1160,
         -420
       ],
       "id": "edf440d3-3943-488a-8763-c8214fc30858",
@@ -1077,7 +1077,7 @@
           "assignments": [
             {
               "id": "887c6e00-e6e0-44a0-92d8-5f293059fd66",
-              "name": "occurred_time",
+              "name": "headache_occur",
               "value": "={{ $json.no_headache_time }}",
               "type": "string"
             },
@@ -1115,7 +1115,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": \"恭喜你在 {{ $json.occurred_time }} 頭不痛啦 😊\"\n}\n]\n}",
+        "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": \"恭喜你在 {{ $json.headache_occur }} 頭不痛啦 😊\"\n}\n]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1302,7 +1302,9 @@
           "attemptToConvertTypes": false,
           "convertFieldsToString": true
         },
-        "options": {}
+        "options": {
+          "waitForSubWorkflow": true
+        }
       },
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
@@ -1344,33 +1346,6 @@
       "parameters": {
         "workflowId": {
           "__rl": true,
-          "value": "lFSOddL888aZLb33",
-          "mode": "list",
-          "cachedResultName": "Write Headache Level Data"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": true
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1.2,
-      "position": [
-        1320,
-        400
-      ],
-      "id": "302a1bc8-4510-47c0-bf15-ada0a5220a2f",
-      "name": "Execute Workflow"
-    },
-    {
-      "parameters": {
-        "workflowId": {
-          "__rl": true,
           "value": "H9yAS8OUuT2mVOq7",
           "mode": "list",
           "cachedResultName": "List Latest Medicine Usage"
@@ -1395,6 +1370,33 @@
       ],
       "id": "1c1b3d9c-e7b2-4320-b486-6961dbefaf58",
       "name": "Execute Workflow1"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "vydQHbTXP7C92HZP",
+          "mode": "list",
+          "cachedResultName": "Write Action"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1320,
+        400
+      ],
+      "id": "302a1bc8-4510-47c0-bf15-ada0a5220a2f",
+      "name": "Write Action"
     }
   ],
   "connections": {
@@ -1701,7 +1703,7 @@
       "main": [
         [
           {
-            "node": "Execute Workflow",
+            "node": "Write Action",
             "type": "main",
             "index": 0
           }
@@ -1807,6 +1809,17 @@
         ]
       ]
     },
+    "Write Medicine Usage": {
+      "main": [
+        [
+          {
+            "node": "Response Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "write no headache": {
       "main": [
         [
@@ -1818,22 +1831,22 @@
         ]
       ]
     },
-    "Execute Workflow": {
+    "Execute Workflow1": {
       "main": [
         [
           {
-            "node": "Response Action",
+            "node": "Code1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Execute Workflow1": {
+    "Write Action": {
       "main": [
         [
           {
-            "node": "Code1",
+            "node": "Response Action",
             "type": "main",
             "index": 0
           }

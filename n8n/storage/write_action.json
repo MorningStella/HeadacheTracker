@@ -51,8 +51,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        260,
-        -60
+        220,
+        -260
       ],
       "id": "103be950-5c26-4f77-8026-a76e84679231",
       "name": "Write Action",
@@ -75,6 +75,28 @@
       ],
       "id": "b52646a3-5878-4250-85b6-7bfeb722b62e",
       "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "action",
+        "fields": "action,occur_time",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        240,
+        -60
+      ],
+      "id": "adb4ad79-727b-4637-883d-cec55924d3e8",
+      "name": "MongoDB",
+      "credentials": {
+        "mongoDb": {
+          "id": "MogmGKazdDdMwfXy",
+          "name": "devin-lin headache tracker"
+        }
+      }
     }
   ],
   "connections": {
@@ -82,16 +104,22 @@
       "main": [
         [
           {
-            "node": "Write Action",
+            "node": "MongoDB",
             "type": "main",
             "index": 0
           }
         ]
       ]
+    },
+    "MongoDB": {
+      "main": [
+        []
+      ]
     }
   },
   "pinData": {},
   "meta": {
+    "templateCredsSetupCompleted": true,
     "instanceId": "eb24dce5d4aef556d676bc7f743db645da668ad0a28698a3baf0616aa1f0314b"
   }
 }

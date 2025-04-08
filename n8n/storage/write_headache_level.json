@@ -1,95 +1,123 @@
 {
-    "nodes": [
-      {
-        "parameters": {
-          "inputSource": "passthrough"
-        },
-        "type": "n8n-nodes-base.executeWorkflowTrigger",
-        "typeVersion": 1.1,
-        "position": [
-          0,
-          0
-        ],
-        "id": "14a10f92-5477-461c-a83f-474594d942a8",
-        "name": "When Executed by Another Workflow"
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
       },
-      {
-        "parameters": {
-          "operation": "append",
-          "documentId": {
-            "__rl": true,
-            "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
-            "mode": "list",
-            "cachedResultName": "頭痛 sheet",
-            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
-          },
-          "sheetName": {
-            "__rl": true,
-            "value": "工作表4",
-            "mode": "name"
-          },
-          "columns": {
-            "mappingMode": "autoMapInputData",
-            "value": {},
-            "matchingColumns": [],
-            "schema": [
-              {
-                "id": "pain_level",
-                "displayName": "pain_level",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": false
-              },
-              {
-                "id": "occurred_time",
-                "displayName": "occurred_time",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": false
-              }
-            ],
-            "attemptToConvertTypes": false,
-            "convertFieldsToString": false
-          },
-          "options": {}
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "14a10f92-5477-461c-a83f-474594d942a8",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE",
+          "mode": "list",
+          "cachedResultName": "頭痛 sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YOysUaZOE5fcWEMhUS9qdwHwWoS1HkdoY1s9EcFySZE/edit?usp=drivesdk"
         },
-        "type": "n8n-nodes-base.googleSheets",
-        "typeVersion": 4.5,
-        "position": [
-          220,
-          0
-        ],
-        "id": "0a690e91-0400-477c-84ea-caccb48d582a",
-        "name": "Google Sheets3",
-        "credentials": {
-          "googleSheetsOAuth2Api": {
-            "id": "Ih53FiJ3YzQzkiYH",
-            "name": "devin.lin.gss Google Sheets "
-          }
+        "sheetName": {
+          "__rl": true,
+          "value": "工作表4",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "pain_level",
+              "displayName": "pain_level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "occurred_time",
+              "displayName": "occurred_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        440,
+        0
+      ],
+      "id": "0a690e91-0400-477c-84ea-caccb48d582a",
+      "name": "Google Sheets3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Ih53FiJ3YzQzkiYH",
+          "name": "devin.lin.gss Google Sheets "
         }
       }
-    ],
-    "connections": {
-      "When Executed by Another Workflow": {
-        "main": [
-          [
-            {
-              "node": "Google Sheets3",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      }
     },
-    "pinData": {},
-    "meta": {
-      "instanceId": "eb24dce5d4aef556d676bc7f743db645da668ad0a28698a3baf0616aa1f0314b"
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "headache",
+        "fields": "pain_level,headache_where,headache_occur",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "73c3ecb8-1592-47ea-858a-430b715fa9be",
+      "name": "MongoDB",
+      "credentials": {
+        "mongoDb": {
+          "id": "MogmGKazdDdMwfXy",
+          "name": "devin-lin headache tracker"
+        }
+      }
     }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "eb24dce5d4aef556d676bc7f743db645da668ad0a28698a3baf0616aa1f0314b"
   }
+}
