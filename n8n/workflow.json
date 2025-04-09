@@ -9,12 +9,12 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -1940,
-        -400
+        -160,
+        1940
       ],
-      "id": "58845eec-6361-4b48-8152-651a475ce30e",
+      "id": "114a2141-0b89-4682-9eee-a73e3969252a",
       "name": "Webhook",
-      "webhookId": "c6350716-2048-4591-a918-2f7fe74ef7a3"
+      "webhookId": "adc81d3b-5694-4b97-8707-700d4e5cecc7"
     },
     {
       "parameters": {
@@ -76,10 +76,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -1460,
-        -380
+        200,
+        1960
       ],
-      "id": "58fb4960-497c-4dbc-81a9-4465e1e8fdd8",
+      "id": "201a2c28-5fd7-466a-ac60-e66c2f9aefc1",
       "name": "Switch"
     },
     {
@@ -99,10 +99,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1040,
-        340
+        620,
+        2680
       ],
-      "id": "79d01996-1e1a-43c3-bbd1-d20d7fbef465",
+      "id": "6c492fd7-fba3-4cfe-8bdc-6cd086a306da",
       "name": "Set Drug Select"
     },
     {
@@ -126,10 +126,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2340,
-        -420
+        4000,
+        1920
       ],
-      "id": "29f944fb-bb16-4594-a9a9-0fdf2bec2d61",
+      "id": "669595ab-3b38-4ccc-85ac-9ba5c552699e",
       "name": "Response Drug Select"
     },
     {
@@ -255,6 +255,30 @@
               },
               "renameOutput": true,
               "outputKey": "頭不痛了"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b6b32546-7312-4cd2-bc6e-a99fba0c6fb6",
+                    "leftValue": "={{ $json.body.events[0].message.text }}",
+                    "rightValue": "最近頭痛",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "最近頭痛時間"
             }
           ]
         },
@@ -263,10 +287,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -1620,
-        620
+        40,
+        2960
       ],
-      "id": "c41afbb5-3709-40e8-9aa3-c09e10c498ce",
+      "id": "891abb6c-5dc1-4ce5-b7b1-9fe9a09ecb56",
       "name": "Determine Response Action"
     },
     {
@@ -579,23 +603,23 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        120,
-        -440
+        1780,
+        1900
       ],
-      "id": "2c66882b-1c00-49b3-9883-b6152888b776",
+      "id": "9b38aaa1-f7e5-4c66-bb30-3074b143d399",
       "name": "Switch1"
     },
     {
       "parameters": {
-        "jsCode": "const input = $input.first().json.body.events[0].postback.data;\n\n// Use a single regex to capture key-value pairs for both long (--key=value) and short (-k=value) options\nconst regex = /([a-zA-Z0-9_]+)=([^\\s]*)/gu;\n\nlet matches;\nlet drug_type = null;\nlet drug_type_tmp = null;\nlet drug_number = null;\nlet drug_number_tmp = null;\nlet drug_datetime = null;\nlet pain_level = null;\nlet pain_level_tmp = null;\nlet headache_occur = null;\nlet headache_occur_tmp = null;\nlet action_occur = null;\nlet action = null;\nlet no_headache_occur = null;\nlet headache_where = null;\nlet headache_where_final = null;\nlet headache_ask = null;\n\n// Loop through the matches\nwhile ((matches = regex.exec(input)) !== null) {\n    const key = matches[1] || matches[3]; // Get long option name or short key\n    var value = matches[2] || matches[4]; // Get the associated value\n    value = value.trimEnd()\n    // Assign to the appropriate variable based on the key\n    if (key === 'drug_type') {\n        drug_type = value;\n    } else if (key === 'drug_number') {\n        drug_number = value;\n    } else if (key === 'drug_datetime') {\n      drug_datetime = value;\n    } else if (key === 'drug_type_tmp') {\n      drug_type_tmp = value\n    } else if (key === 'drug_number_tmp') {\n      drug_number_tmp = value\n    } else if (key === 'pain_level') {\n      pain_level = value\n    } else if (key === 'pain_level_tmp') {\n      pain_level_tmp = value\n    } else if (key === 'headache_occur') {\n      headache_occur = value\n    } else if (key === 'headache_occur_tmp') {\n      headache_occur_tmp = value\n    } else if (key === 'action_occur') {\n      action_occur = value\n    } else if (key === 'action') {\n      action = value\n    } else if (key === 'no_headache_occur') {\n      no_headache_occur = value\n    } else if (key === 'headache_where') {\n      headache_where = value\n    } else if (key === 'headache_where_final') {\n      headache_where_final = value\n    } else if (key === 'headache_ask') {\n      headache_ask = value\n    }\n}\n\n// Return the results\nreturn { drug_datetime, drug_number, drug_type, drug_type_tmp, drug_number_tmp, pain_level, headache_occur, headache_occur_tmp, action_occur, action, no_headache_occur, headache_where, headache_where_final, pain_level_tmp, headache_ask };"
+        "jsCode": "const input = $input.first().json.body.events[0].postback.data;\n\n// Use a single regex to capture key-value pairs for both long (--key=value) and short (-k=value) options\nconst regex = /([a-zA-Z0-9_]+)=([^\\s]*)/gu;\n\nlet matches;\nlet drug_type = null;\nlet drug_type_tmp = null;\nlet drug_number = null;\nlet drug_number_tmp = null;\nlet drug_datetime = null;\nlet pain_level = null;\nlet pain_level_tmp = null;\nlet headache_occur = null;\nlet headache_occur_tmp = null;\nlet action_occur = null;\nlet action = null;\nlet no_headache_occur = null;\nlet headache_where = null;\nlet headache_where_final = null;\nlet headache_ask = null;\n\n// Loop through the matches\nwhile ((matches = regex.exec(input)) !== null) {\n    const key = matches[1] || matches[3]; // Get long option name or short key\n    var value = matches[2] || matches[4]; // Get the associated value\n    value = value?.trimEnd()\n    // Assign to the appropriate variable based on the key\n    if (key === 'drug_type') {\n        drug_type = value;\n    } else if (key === 'drug_number') {\n        drug_number = value;\n    } else if (key === 'drug_datetime') {\n      drug_datetime = value;\n    } else if (key === 'drug_type_tmp') {\n      drug_type_tmp = value\n    } else if (key === 'drug_number_tmp') {\n      drug_number_tmp = value\n    } else if (key === 'pain_level') {\n      pain_level = value\n    } else if (key === 'pain_level_tmp') {\n      pain_level_tmp = value\n    } else if (key === 'headache_occur') {\n      headache_occur = value\n    } else if (key === 'headache_occur_tmp') {\n      headache_occur_tmp = value\n    } else if (key === 'action_occur') {\n      action_occur = value\n    } else if (key === 'action') {\n      action = value\n    } else if (key === 'no_headache_occur') {\n      no_headache_occur = value\n    } else if (key === 'headache_where') {\n      headache_where = value\n    } else if (key === 'headache_where_final') {\n      headache_where_final = value\n    } else if (key === 'headache_ask') {\n      headache_ask = value\n    }\n}\n\n// Return the results\nreturn { drug_datetime, drug_number, drug_type, drug_type_tmp, drug_number_tmp, pain_level, headache_occur, headache_occur_tmp, action_occur, action, no_headache_occur, headache_where, headache_where_final, pain_level_tmp, headache_ask };"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -60,
-        -240
+        1600,
+        2100
       ],
-      "id": "da957630-6609-4c23-b275-86c64046b2d0",
+      "id": "fefae6d1-761b-49b6-b8ef-0e295c0cd7f6",
       "name": "Code"
     },
     {
@@ -615,10 +639,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        680,
-        -740
+        2340,
+        1600
       ],
-      "id": "0ef9be72-d0bc-401e-9443-9e9ee0fe4107",
+      "id": "fcfde680-3fca-4c2c-b6af-3d21b6afcf6a",
       "name": "Set Drug Number"
     },
     {
@@ -638,10 +662,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        700,
-        -580
+        2360,
+        1760
       ],
-      "id": "3088ccc5-3608-4879-9212-906ff41078fa",
+      "id": "884003cf-7fae-4218-aa1b-58ac4078f3f7",
       "name": "Set Drug DateTime"
     },
     {
@@ -673,10 +697,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        700,
-        -420
+        2360,
+        1920
       ],
-      "id": "0c169ab2-dc72-47e4-a2e8-b866a14d0b09",
+      "id": "f40694a9-dd04-4338-a386-aa8da50a54dc",
       "name": "Set Drug Usage"
     },
     {
@@ -700,10 +724,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1160,
-        -420
+        2820,
+        1920
       ],
-      "id": "edf440d3-3943-488a-8763-c8214fc30858",
+      "id": "861e5903-ac9e-4a90-9a85-de81d6267511",
       "name": "Response Success"
     },
     {
@@ -721,16 +745,16 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').first().json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": {{ $json.formattedOutput.toJsonString() }}\n}\n]\n}",
+        "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').first().json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": {{ $json.formattedOutput }}\n}\n]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -180,
-        560
+        1480,
+        2900
       ],
-      "id": "06fb85a3-8497-4349-9a1b-bcf88bb9703b",
+      "id": "f63dd03c-33c1-4aac-96bb-8b68e9d2ed3a",
       "name": "Response Success1"
     },
     {
@@ -740,7 +764,7 @@
             {
               "id": "1366a377-4f67-4f9f-9304-89d8859906fb",
               "name": "message",
-              "value": "={\n  \"type\": \"flex\",\n  \"altText\": \"現在頭有幾分痛\",\n  \"contents\": {\n      \"type\": \"bubble\",\n      \"hero\": {\n        \"type\": \"image\",\n        \"size\": \"full\",\n        \"aspectRatio\": \"20:13\",\n        \"aspectMode\": \"cover\",\n        \"action\": {\n          \"type\": \"uri\",\n          \"uri\": \"https://line.me/\"\n        },\n        \"url\": \"https://image1.gamme.com.tw/news2/2016/16/30/qZqYnaadkZ_brKQ.jpg\"\n      },\n      \"body\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"md\",\n        \"contents\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"頭痛幾分\",\n            \"weight\": \"bold\",\n            \"size\": \"xl\",\n            \"align\": \"center\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"現在幾分痛\",\n            \"size\": \"md\",\n            \"color\": \"#aaaaaa\",\n            \"align\": \"center\"\n          }\n        ]\n      },\n      \"footer\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"1\",\n                  \"text\": \"1 分痛\",\n                  \"data\": \"pain_level=1 headache_occur_tmp={{$json.occur_time}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#91D3FA\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"2\",\n                  \"text\": \"2 分痛\",\n                  \"data\": \"pain_level=2 headache_occur_tmp={{$json.occur_time}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#76C9F9\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"3\",\n                  \"text\": \"3 分痛\",\n                  \"data\": \"pain_level=3 headache_occur_tmp={{$json.occur_time}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#5CBEF7\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"4 分痛\",\n                  \"label\": \"4\",\n                  \"data\": \"pain_level=4\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#41B3F6\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"5 分痛\",\n                  \"label\": \"5\",\n                  \"data\": \"pain_level=5 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#26A9F4\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"6 分痛\",\n                  \"label\": \"6\",\n                  \"data\": \"pain_level=6 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0B9EF3\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"7 分痛\",\n                  \"label\": \"7\",\n                  \"data\": \"pain_level=7 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0A83CA\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"8 分痛\",\n                  \"label\": \"8\",\n                  \"data\": \"pain_level=8 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0869A0\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"9 分痛\",\n                  \"label\": \"9\",\n                  \"data\": \"pain_level=9 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#064E76\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"margin\": \"md\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"超級無敵痛\",\n                  \"label\": \"∞\",\n                  \"data\": \"pain_level=infinite\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#FF4500\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"救救我...\",\n                  \"label\": \"help\",\n                  \"data\": \"pain_level=help\"\n                },\n                \"style\": \"primary\",\n                \"height\": \"sm\",\n                \"color\": \"#FF4500\"\n              }\n            ]\n          }\n        ]\n      }\n    }\n}",
+              "value": "={\n  \"type\": \"flex\",\n  \"altText\": \"現在頭有幾分痛\",\n  \"contents\": {\n      \"type\": \"bubble\",\n      \"hero\": {\n        \"type\": \"image\",\n        \"size\": \"full\",\n        \"aspectRatio\": \"20:13\",\n        \"aspectMode\": \"cover\",\n        \"action\": {\n          \"type\": \"uri\",\n          \"uri\": \"https://line.me/\"\n        },\n        \"url\": \"https://image1.gamme.com.tw/news2/2016/16/30/qZqYnaadkZ_brKQ.jpg\"\n      },\n      \"body\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"md\",\n        \"contents\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"頭痛幾分\",\n            \"weight\": \"bold\",\n            \"size\": \"xl\",\n            \"align\": \"center\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"現在幾分痛\",\n            \"size\": \"md\",\n            \"color\": \"#aaaaaa\",\n            \"align\": \"center\"\n          }\n        ]\n      },\n      \"footer\": {\n        \"type\": \"box\",\n        \"layout\": \"vertical\",\n        \"spacing\": \"sm\",\n        \"contents\": [\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"1\",\n                  \"text\": \"1 分痛\",\n                  \"data\": \"pain_level=1 headache_occur_tmp={{$json.occur_time}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#91D3FA\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"2\",\n                  \"text\": \"2 分痛\",\n                  \"data\": \"pain_level=2 headache_occur_tmp={{$json.occur_time}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#76C9F9\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"label\": \"3\",\n                  \"text\": \"3 分痛\",\n                  \"data\": \"pain_level=3 headache_occur_tmp={{$json.occur_time}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#5CBEF7\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"4 分痛\",\n                  \"label\": \"4\",\n                  \"data\": \"pain_level=4 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#41B3F6\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"5 分痛\",\n                  \"label\": \"5\",\n                  \"data\": \"pain_level=5 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#26A9F4\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"6 分痛\",\n                  \"label\": \"6\",\n                  \"data\": \"pain_level=6 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0B9EF3\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"7 分痛\",\n                  \"label\": \"7\",\n                  \"data\": \"pain_level=7 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0A83CA\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"8 分痛\",\n                  \"label\": \"8\",\n                  \"data\": \"pain_level=8 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#0869A0\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"9 分痛\",\n                  \"label\": \"9\",\n                  \"data\": \"pain_level=9 headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#064E76\",\n                \"height\": \"sm\"\n              }\n            ]\n          },\n          {\n            \"type\": \"box\",\n            \"layout\": \"horizontal\",\n            \"spacing\": \"sm\",\n            \"margin\": \"md\",\n            \"contents\": [\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"超級無敵痛\",\n                  \"label\": \"∞\",\n                  \"data\": \"pain_level=infinite headache_occur_tmp={{$json.headache_occur}}\"\n                },\n                \"style\": \"primary\",\n                \"color\": \"#FF4500\",\n                \"height\": \"sm\"\n              },\n              {\n                \"type\": \"button\",\n                \"action\": {\n                  \"type\": \"postback\",\n                  \"text\": \"救救我...\",\n                  \"label\": \"help\",\n                  \"data\": \"pain_level=help\"\n                },\n                \"style\": \"primary\",\n                \"height\": \"sm\",\n                \"color\": \"#FF4500\"\n              }\n            ]\n          }\n        ]\n      }\n    }\n}",
               "type": "string"
             }
           ]
@@ -750,10 +774,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        980,
-        -40
+        2640,
+        2300
       ],
-      "id": "caef535d-b5c1-44db-8788-f91099738c1d",
+      "id": "76a80dd4-17e3-4484-82e7-1b663de8736a",
       "name": "Set Ask Headache Level"
     },
     {
@@ -785,10 +809,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        700,
-        -260
+        2360,
+        2080
       ],
-      "id": "012bed11-a597-4b7d-97d9-38f5fe21b6e8",
+      "id": "f9156c93-a560-412c-9891-e11960111d28",
       "name": "Set Pain Level"
     },
     {
@@ -812,23 +836,23 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2260,
-        -780
+        3920,
+        1560
       ],
-      "id": "d67727c0-de75-4dfa-a6f4-fb01aa13ea53",
+      "id": "cf49ccfd-9732-414a-a4ed-9ed686321712",
       "name": "Response Success2"
     },
     {
       "parameters": {
-        "jsCode": "let data = $input.all();\nlet formattedOutput = \"\";\nfor (let i = 0; i < data.length; i++) {\n  const entry = data[i].json;\n  console.log(entry)\n  formattedOutput += `在 ${entry.drug_datetime} 吃了 ${\"💊\".repeat(entry.drug_number)} ${entry.drug_type}`;\n  \n  // Add newline if not the last element\n  if (i < data.length - 1) {\n    formattedOutput += '\\n';\n  }\n}\n\nreturn {formattedOutput}"
+        "jsCode": "let data = $input.all();\nlet formattedOutput = \"\";\nfor (let i = 0; i < data.length; i++) {\n  const entry = data[i].json;\n  console.log(entry)\n  formattedOutput += `在 ${entry.drug_datetime} 吃了 ${\"💊\".repeat(entry.drug_number)} ${entry.drug_type}`;\n  \n  // Add newline if not the last element\n  if (i < data.length - 1) {\n    formattedOutput += '\\n';\n  }\n}\n\nformattedOutput = JSON.stringify(formattedOutput)\nreturn {formattedOutput}"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -380,
-        560
+        1280,
+        2900
       ],
-      "id": "fd3b62f8-687e-4644-8a01-3e3913d3963b",
+      "id": "37ea2e30-4516-4e0e-8bf6-38352d76c676",
       "name": "Code1"
     },
     {
@@ -848,10 +872,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -920,
-        480
+        740,
+        2820
       ],
-      "id": "a42e6e21-13b1-44b3-a2e7-e59b0eab82e9",
+      "id": "6742b856-516f-447a-b9e7-35f0ba7e4df3",
       "name": "Set Headache When"
     },
     {
@@ -871,10 +895,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        700,
-        60
+        2360,
+        2400
       ],
-      "id": "8929be91-1736-4f0c-9e02-bfa5254a52c7",
+      "id": "6dc9dbc4-31fb-4e43-833e-692932fa9599",
       "name": "Set Select Occur Time"
     },
     {
@@ -894,10 +918,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        700,
-        -100
+        2360,
+        2240
       ],
-      "id": "ebc7fd53-2723-43cb-9602-16b8a72983d1",
+      "id": "2802edce-fe80-41be-951d-725a5547b9c1",
       "name": "Set Now Occur Time"
     },
     {
@@ -917,10 +941,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1020,
-        740
+        640,
+        3080
       ],
-      "id": "808662cd-8c6a-4f38-ba7a-1a1a9241d316",
+      "id": "6580af02-8a48-4965-a645-4ebd0d9e84d1",
       "name": "Set Action When"
     },
     {
@@ -940,10 +964,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        700,
-        260
+        2360,
+        2600
       ],
-      "id": "1b19d761-cc2f-44d8-bbe2-10b5ec24716a",
+      "id": "b9a6bda3-c2a3-41e4-adad-629d3ce54168",
       "name": "Set Action Occur Now"
     },
     {
@@ -969,10 +993,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1100,
-        400
+        2760,
+        2740
       ],
-      "id": "3dc2f189-dede-4758-a5a6-dff97a600951",
+      "id": "db45eac0-1ded-4416-867a-cd9cd6577d8c",
       "name": "Set Action Insertion Data"
     },
     {
@@ -992,10 +1016,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        700,
-        480
+        2360,
+        2820
       ],
-      "id": "0f19acc4-acab-4630-aaba-c3dc0bc98c63",
+      "id": "f1986959-c186-45d2-8eb5-1575f757d5b8",
       "name": "Set Action Select Time"
     },
     {
@@ -1019,10 +1043,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1500,
-        400
+        3160,
+        2740
       ],
-      "id": "833b48ef-b20b-4d5d-827a-435b71c77666",
+      "id": "df735222-a6ce-44ff-b867-c5220873376f",
       "name": "Response Action"
     },
     {
@@ -1042,10 +1066,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1080,
-        1000
+        640,
+        3260
       ],
-      "id": "9498da3d-dfc0-4e40-aaa3-d700dd4f1847",
+      "id": "b7977ec1-dfb8-413a-812e-4d15ada904a6",
       "name": "Set No Headache When"
     },
     {
@@ -1065,10 +1089,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        700,
-        700
+        2360,
+        3040
       ],
-      "id": "8339cbc8-70e5-4a15-bb7a-828aa93ddb4c",
+      "id": "925304a8-d750-406f-af56-ba33be4b84e6",
       "name": "Set No Headache Now"
     },
     {
@@ -1094,10 +1118,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1080,
-        700
+        2740,
+        3040
       ],
-      "id": "78e9b959-2a44-4c82-ae76-90d2c0cea4d9",
+      "id": "226df04a-3920-43ef-be39-86217babf924",
       "name": "Set No Headache Insert Data"
     },
     {
@@ -1121,10 +1145,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1640,
-        700
+        3300,
+        3040
       ],
-      "id": "2bfeed66-6d95-4a0a-81d9-685ad7737168",
+      "id": "df8b5bc6-c31f-4861-bb5d-4e3c4db7614f",
       "name": "Response Success3"
     },
     {
@@ -1144,10 +1168,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        700,
-        960
+        2360,
+        3300
       ],
-      "id": "f0fdb4a2-8844-47bd-b315-b3d8eef4d446",
+      "id": "0b56eb94-ee1c-4a43-9d81-265930dcce7f",
       "name": "Set No Headache Select Time"
     },
     {
@@ -1160,10 +1184,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        2080,
-        -820
+        3740,
+        1520
       ],
-      "id": "0f8f1cbe-f69a-47a3-9310-ddedfb9cd430",
+      "id": "8e17f652-b9e3-4745-8ec7-119af04c98bd",
       "name": "Sticky Note"
     },
     {
@@ -1183,10 +1207,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        920,
-        -260
+        2580,
+        2080
       ],
-      "id": "ccafb0ea-f3b7-4963-acfd-0d769be0b4b3",
+      "id": "f6fbfdda-d9db-45fe-96f3-0240cb57965c",
       "name": "Set Ask Headache Where"
     },
     {
@@ -1218,10 +1242,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        340,
-        160
+        2000,
+        2500
       ],
-      "id": "422c7164-9d7e-45c1-8b30-6fd85d8ac98c",
+      "id": "496bf128-c776-458f-bbc4-13559b79a1d5",
       "name": "Set Existed Headache Where"
     },
     {
@@ -1253,17 +1277,17 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        600,
-        -1080
+        2260,
+        1260
       ],
-      "id": "88178774-19ca-4ada-8a99-b1f8c796ddda",
+      "id": "9db10b5e-80b7-4e92-8c22-872117b7b492",
       "name": "Set Insert Ask Headache Data"
     },
     {
       "parameters": {
         "workflowId": {
           "__rl": true,
-          "value": "lFSOddL888aZLb33",
+          "value": "t6pwOIMsfRwe7Pge",
           "mode": "list",
           "cachedResultName": "Write Headache Level Data"
         },
@@ -1280,17 +1304,17 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        1500,
-        -880
+        3160,
+        1460
       ],
-      "id": "72db1af6-d14e-4f38-965d-dedb35d1968f",
+      "id": "abd5dd42-eac5-42fd-8c05-3b6f616ce1a0",
       "name": "Write Headache Level"
     },
     {
       "parameters": {
         "workflowId": {
           "__rl": true,
-          "value": "w29n7YyVIeUEKaZF",
+          "value": "S8sAelRpoNS9PhiJ",
           "mode": "list",
           "cachedResultName": "Write Medicine Usage"
         },
@@ -1309,17 +1333,17 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        920,
-        -420
+        2580,
+        1920
       ],
-      "id": "36840dfe-ca85-4894-822b-0ea275736f9e",
+      "id": "edb3ed81-edae-4c1f-8ab3-cb9b6ed9b784",
       "name": "Write Medicine Usage"
     },
     {
       "parameters": {
         "workflowId": {
           "__rl": true,
-          "value": "lFSOddL888aZLb33",
+          "value": "t6pwOIMsfRwe7Pge",
           "mode": "list",
           "cachedResultName": "Write Headache Level Data"
         },
@@ -1336,17 +1360,17 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        1300,
-        700
+        2960,
+        3040
       ],
-      "id": "d3653609-9335-4d89-ac8b-b977468febc2",
+      "id": "7c1f2ad7-468a-44d2-b3b1-3b3e38234a4e",
       "name": "write no headache"
     },
     {
       "parameters": {
         "workflowId": {
           "__rl": true,
-          "value": "H9yAS8OUuT2mVOq7",
+          "value": "bsww9kAb8DtrMO3f",
           "mode": "list",
           "cachedResultName": "List Latest Medicine Usage"
         },
@@ -1365,17 +1389,17 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        -880,
-        620
+        780,
+        2960
       ],
-      "id": "1c1b3d9c-e7b2-4320-b486-6961dbefaf58",
+      "id": "a4212859-d223-499d-abbf-c2048addd24b",
       "name": "Execute Workflow1"
     },
     {
       "parameters": {
         "workflowId": {
           "__rl": true,
-          "value": "vydQHbTXP7C92HZP",
+          "value": "Aasdx41TvcrQ5Ca0",
           "mode": "list",
           "cachedResultName": "Write Action"
         },
@@ -1392,11 +1416,51 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        1320,
-        400
+        2980,
+        2740
       ],
-      "id": "302a1bc8-4510-47c0-bf15-ada0a5220a2f",
+      "id": "6645bd40-8c83-4752-a471-8b4632e00006",
       "name": "Write Action"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "8dUOTyssWp1wjWUE",
+          "mode": "list",
+          "cachedResultName": "List Latest Headache"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        600,
+        3500
+      ],
+      "id": "622beece-fd19-4b86-af9a-c94a79f6646e",
+      "name": "Execute Workflow"
+    },
+    {
+      "parameters": {
+        "jsCode": "let data = $input.all();\nlet formattedOutput = \"最近頭痛紀錄📝\\n\";\nfor (let i = 0; i < data.length; i++) {\n  const entry = data[i].json;\n  console.log(entry)\n  formattedOutput += `在 ${entry.headache_occur} 發生了 ${entry.pain_level} 級頭痛❗`;\n\n  if(entry.headache_where != null)\n  {\n    formattedOutput += `\\n頭痛部位包含${entry.headache_where.replace(/;$/, '')}`\n  }\n  \n  // Add newline if not the last element\n  if (i < data.length - 1) {\n    formattedOutput += '\\n';\n  }\n}\n\nformattedOutput = JSON.stringify(formattedOutput)\nreturn {formattedOutput}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        3440
+      ],
+      "id": "a3206e14-cb7e-4246-92c5-b4b01340b215",
+      "name": "Code2"
     }
   ],
   "connections": {
@@ -1473,6 +1537,13 @@
         [
           {
             "node": "Set No Headache When",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Execute Workflow",
             "type": "main",
             "index": 0
           }
@@ -1852,11 +1923,32 @@
           }
         ]
       ]
+    },
+    "Execute Workflow": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Response Success1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "pinData": {},
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "eb24dce5d4aef556d676bc7f743db645da668ad0a28698a3baf0616aa1f0314b"
+    "instanceId": "7474d84d2b834c864715cc1139cc946616c2310c4f45afb5a0945ca7fc78e0d9"
   }
 }
