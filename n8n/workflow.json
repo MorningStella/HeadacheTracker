@@ -9,10 +9,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -160,
-        1940
+        -80,
+        2760
       ],
-      "id": "114a2141-0b89-4682-9eee-a73e3969252a",
+      "id": "0504a4bf-0f6e-4aab-8f50-9ed4d241a22f",
       "name": "Webhook",
       "webhookId": "adc81d3b-5694-4b97-8707-700d4e5cecc7"
     },
@@ -76,10 +76,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        200,
-        1960
+        280,
+        2780
       ],
-      "id": "201a2c28-5fd7-466a-ac60-e66c2f9aefc1",
+      "id": "ebcb4dd5-8807-48ff-96eb-95803cbcd6e2",
       "name": "Switch"
     },
     {
@@ -99,10 +99,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        620,
-        2680
+        700,
+        3500
       ],
-      "id": "6c492fd7-fba3-4cfe-8bdc-6cd086a306da",
+      "id": "9065bd52-1037-4870-8b6e-7586fdca0ed2",
       "name": "Set Drug Select"
     },
     {
@@ -126,10 +126,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        4000,
-        1920
+        4300,
+        2740
       ],
-      "id": "669595ab-3b38-4ccc-85ac-9ba5c552699e",
+      "id": "ae5e3a41-a6b4-45e1-957f-16a4a068e412",
       "name": "Response Drug Select"
     },
     {
@@ -287,10 +287,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        40,
-        2960
+        120,
+        3780
       ],
-      "id": "891abb6c-5dc1-4ce5-b7b1-9fe9a09ecb56",
+      "id": "ad4c377d-3cfa-43ce-9494-55104a8cfd83",
       "name": "Determine Response Action"
     },
     {
@@ -359,7 +359,7 @@
                   {
                     "id": "98088412-70f4-4e62-8e62-282f6dfae893",
                     "leftValue": "={{ $json.drug_datetime }}",
-                    "rightValue": "true",
+                    "rightValue": "now",
                     "operator": {
                       "type": "string",
                       "operation": "equals"
@@ -369,7 +369,7 @@
                 "combinator": "and"
               },
               "renameOutput": true,
-              "outputKey": "write drug record"
+              "outputKey": "medicine now"
             },
             {
               "conditions": {
@@ -595,6 +595,31 @@
               },
               "renameOutput": true,
               "outputKey": "headache ask done"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "87fee6fa-bdb8-4c63-8836-0155d0e67b67",
+                    "leftValue": "={{ $json.drug_datetime }}",
+                    "rightValue": "selecttime",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "medicine selecttime"
             }
           ]
         },
@@ -603,10 +628,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        1780,
-        1900
+        1860,
+        2720
       ],
-      "id": "9b38aaa1-f7e5-4c66-bb30-3074b143d399",
+      "id": "ee89e809-4f25-4a0f-a421-f620a2234dea",
       "name": "Switch1"
     },
     {
@@ -616,10 +641,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1600,
-        2100
+        1680,
+        2920
       ],
-      "id": "fefae6d1-761b-49b6-b8ef-0e295c0cd7f6",
+      "id": "23ccc15e-9617-4a72-bee4-651baaa807c5",
       "name": "Code"
     },
     {
@@ -639,10 +664,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2340,
-        1600
+        2640,
+        2420
       ],
-      "id": "fcfde680-3fca-4c2c-b6af-3d21b6afcf6a",
+      "id": "1f27ab67-acc5-43bc-9a6a-0f9804829261",
       "name": "Set Drug Number"
     },
     {
@@ -652,7 +677,7 @@
             {
               "id": "6b262a70-2015-4722-9bcc-131f673f88ec",
               "name": "=message",
-              "value": "={\n  \"type\": \"template\",\n  \"altText\": \"什麼時候吃藥的?\",\n  \"template\": {\n    \"type\": \"buttons\",\n    \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n    \"title\": \"什麼時候吃的\",\n    \"text\": \"要記錄唷\",\n    \"actions\": [\n      {\n        \"type\": \"datetimepicker\",\n        \"label\": \"吃的時間\",\n        \"text\": \"已好好記錄時間OuO\",\n        \"data\": \"drug_datetime=true drug_type_tmp={{$json.drug_type_tmp}} drug_number_tmp={{$json.drug_number}}\",\n        \"mode\": \"datetime\",\n        \"initial\": \"{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}\",\n        \"max\": \"{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00\",\n        \"min\": \"{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00\"\n      }\n    ]\n  }\n}",
+              "value": "={\n  \"type\": \"template\",\n  \"altText\": \"什麼時候吃藥的?\",\n  \"template\": {\n    \"type\": \"buttons\",\n    \"thumbnailImageUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s\",\n    \"title\": \"什麼時候吃的\",\n    \"text\": \"要記錄唷\",\n    \"actions\": [\n      {\n        \"type\": \"postback\",\n        \"label\": \"就是現在吃了\",\n        \"text\": \"就是現在\",\n        \"data\": \"drug_datetime=now drug_type_tmp={{$json.drug_type_tmp}} drug_number_tmp={{$json.drug_number}}\"\n      },\n      {\n        \"type\": \"datetimepicker\",\n        \"label\": \"讓我選時間\",\n        \"data\": \"drug_datetime=selecttime drug_type_tmp={{$json.drug_type_tmp}} drug_number_tmp={{$json.drug_number}}\",\n        \"mode\": \"datetime\",\n        \"initial\": \"{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}\",\n        \"max\": \"{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00\",\n        \"min\": \"{{$now.minus(10, 'days').format('yyyy-MM-dd')}}T00:00\"\n      }\n    ]\n  }\n}",
               "type": "string"
             }
           ]
@@ -662,10 +687,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2360,
-        1760
+        2660,
+        2580
       ],
-      "id": "884003cf-7fae-4218-aa1b-58ac4078f3f7",
+      "id": "7bc3a12f-9450-41a2-a8b1-0f82a714fa85",
       "name": "Set Drug DateTime"
     },
     {
@@ -675,19 +700,19 @@
             {
               "id": "467ec0f2-bcfa-4dc3-9a7d-f5f708bcad18",
               "name": "drug_type",
-              "value": "={{ $json.drug_type_tmp }}",
+              "value": "={{ $('Switch1').item.json.drug_type_tmp }}",
               "type": "string"
             },
             {
               "id": "06d005d7-3e7b-412f-9e51-4b90385b5f9e",
               "name": "drug_number",
-              "value": "={{ $json.drug_number_tmp }}",
+              "value": "={{ $('Switch1').item.json.drug_number_tmp }}",
               "type": "string"
             },
             {
               "id": "91bb2ed6-949f-4a0a-a0fc-725d208e0d22",
               "name": "drug_datetime",
-              "value": "={{ $('Webhook').item.json.body.events[0].postback.params.datetime.toDateTime().format('yyyy-MM-ddT') }}T{{ $('Webhook').item.json.body.events[0].postback.params.datetime.toDateTime().format('HH:mm') }}",
+              "value": "={{ $json.drug_datetime }}",
               "type": "string"
             }
           ]
@@ -697,10 +722,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2360,
-        1920
+        2660,
+        2740
       ],
-      "id": "f40694a9-dd04-4338-a386-aa8da50a54dc",
+      "id": "8f323115-5e2a-44c9-92a9-38c27317a8c2",
       "name": "Set Drug Usage"
     },
     {
@@ -724,10 +749,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2820,
-        1920
+        3120,
+        2740
       ],
-      "id": "861e5903-ac9e-4a90-9a85-de81d6267511",
+      "id": "d2465d13-d7e0-4a36-af8c-c96367b095e5",
       "name": "Response Success"
     },
     {
@@ -751,10 +776,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1480,
-        2900
+        1560,
+        3720
       ],
-      "id": "f63dd03c-33c1-4aac-96bb-8b68e9d2ed3a",
+      "id": "1da58090-2e9f-41d0-921b-b556ffa01f96",
       "name": "Response Success1"
     },
     {
@@ -774,10 +799,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2640,
-        2300
+        2940,
+        3120
       ],
-      "id": "76a80dd4-17e3-4484-82e7-1b663de8736a",
+      "id": "0fbccae6-045b-4798-aaa0-2e8e47eb4bc3",
       "name": "Set Ask Headache Level"
     },
     {
@@ -809,10 +834,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2360,
-        2080
+        2660,
+        2900
       ],
-      "id": "f9156c93-a560-412c-9891-e11960111d28",
+      "id": "bcfdb024-00a5-49b6-a4b6-ada763c1997e",
       "name": "Set Pain Level"
     },
     {
@@ -836,10 +861,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3920,
-        1560
+        4220,
+        2380
       ],
-      "id": "cf49ccfd-9732-414a-a4ed-9ed686321712",
+      "id": "ea7a8b6a-4e47-443d-ad4b-67cf99dddda1",
       "name": "Response Success2"
     },
     {
@@ -849,10 +874,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1280,
-        2900
+        1360,
+        3720
       ],
-      "id": "37ea2e30-4516-4e0e-8bf6-38352d76c676",
+      "id": "db6d57a4-ce4d-422f-b275-90a2b92c9ff5",
       "name": "Code1"
     },
     {
@@ -872,10 +897,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        740,
-        2820
+        820,
+        3640
       ],
-      "id": "6742b856-516f-447a-b9e7-35f0ba7e4df3",
+      "id": "b30406e8-f7d3-43d0-b434-e68d2ed4fb02",
       "name": "Set Headache When"
     },
     {
@@ -895,10 +920,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2360,
-        2400
+        2660,
+        3220
       ],
-      "id": "6dc9dbc4-31fb-4e43-833e-692932fa9599",
+      "id": "8bf6637c-5000-400f-9a26-ea94a8779a5b",
       "name": "Set Select Occur Time"
     },
     {
@@ -918,10 +943,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2360,
-        2240
+        2660,
+        3060
       ],
-      "id": "2802edce-fe80-41be-951d-725a5547b9c1",
+      "id": "5fbb2753-63fa-4900-ad67-18db48684c1a",
       "name": "Set Now Occur Time"
     },
     {
@@ -941,10 +966,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        640,
-        3080
+        720,
+        3900
       ],
-      "id": "6580af02-8a48-4965-a645-4ebd0d9e84d1",
+      "id": "1d3f526f-8b6b-4615-85dc-f8b8e8e6260d",
       "name": "Set Action When"
     },
     {
@@ -964,10 +989,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2360,
-        2600
+        2660,
+        3420
       ],
-      "id": "b9a6bda3-c2a3-41e4-adad-629d3ce54168",
+      "id": "1e15c472-6d5a-4840-abfc-5bb8fdf40654",
       "name": "Set Action Occur Now"
     },
     {
@@ -993,10 +1018,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2760,
-        2740
+        3060,
+        3560
       ],
-      "id": "db45eac0-1ded-4416-867a-cd9cd6577d8c",
+      "id": "558d9d3a-0bba-4df2-a93d-0a1cf4362890",
       "name": "Set Action Insertion Data"
     },
     {
@@ -1016,10 +1041,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2360,
-        2820
+        2660,
+        3640
       ],
-      "id": "f1986959-c186-45d2-8eb5-1575f757d5b8",
+      "id": "04db92ad-ca8e-44cd-9ffc-8bc5a525cc56",
       "name": "Set Action Select Time"
     },
     {
@@ -1043,10 +1068,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3160,
-        2740
+        3460,
+        3560
       ],
-      "id": "df735222-a6ce-44ff-b867-c5220873376f",
+      "id": "801776cc-b194-40b3-af29-b6f9cfc14ebc",
       "name": "Response Action"
     },
     {
@@ -1066,10 +1091,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        640,
-        3260
+        720,
+        4080
       ],
-      "id": "b7977ec1-dfb8-413a-812e-4d15ada904a6",
+      "id": "e082e672-9993-4de7-8563-18ab57531761",
       "name": "Set No Headache When"
     },
     {
@@ -1089,10 +1114,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2360,
-        3040
+        2660,
+        3860
       ],
-      "id": "925304a8-d750-406f-af56-ba33be4b84e6",
+      "id": "f0b2d66a-3696-47e5-a703-50ff9643ec48",
       "name": "Set No Headache Now"
     },
     {
@@ -1118,10 +1143,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2740,
-        3040
+        3040,
+        3860
       ],
-      "id": "226df04a-3920-43ef-be39-86217babf924",
+      "id": "b85e873c-761d-4d9c-9233-a835143e8660",
       "name": "Set No Headache Insert Data"
     },
     {
@@ -1145,10 +1170,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3300,
-        3040
+        3600,
+        3860
       ],
-      "id": "df8b5bc6-c31f-4861-bb5d-4e3c4db7614f",
+      "id": "5fc2919a-e04f-40b7-b2fd-ed1b5db9367f",
       "name": "Response Success3"
     },
     {
@@ -1168,10 +1193,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2360,
-        3300
+        2660,
+        4120
       ],
-      "id": "0b56eb94-ee1c-4a43-9d81-265930dcce7f",
+      "id": "1750f561-3ae1-43e9-834b-8ec1ac0bf440",
       "name": "Set No Headache Select Time"
     },
     {
@@ -1184,10 +1209,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        3740,
-        1520
+        3820,
+        2340
       ],
-      "id": "8e17f652-b9e3-4745-8ec7-119af04c98bd",
+      "id": "54b517bd-cd1f-46a1-a0bd-835dba8aff8a",
       "name": "Sticky Note"
     },
     {
@@ -1207,10 +1232,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2580,
-        2080
+        2880,
+        2900
       ],
-      "id": "f6fbfdda-d9db-45fe-96f3-0240cb57965c",
+      "id": "c95efad4-4fac-4946-accb-1ca560568bb0",
       "name": "Set Ask Headache Where"
     },
     {
@@ -1242,10 +1267,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2000,
-        2500
+        2300,
+        3320
       ],
-      "id": "496bf128-c776-458f-bbc4-13559b79a1d5",
+      "id": "5e06e4d2-ab9b-4090-9157-d8a3558b037a",
       "name": "Set Existed Headache Where"
     },
     {
@@ -1277,10 +1302,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2260,
-        1260
+        2560,
+        2080
       ],
-      "id": "9db10b5e-80b7-4e92-8c22-872117b7b492",
+      "id": "8d41d70d-cfad-49dd-890f-933e966479ec",
       "name": "Set Insert Ask Headache Data"
     },
     {
@@ -1304,10 +1329,10 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        3160,
-        1460
+        3460,
+        2280
       ],
-      "id": "abd5dd42-eac5-42fd-8c05-3b6f616ce1a0",
+      "id": "4ad6513d-a4b0-4980-8cb5-b0fb706d6442",
       "name": "Write Headache Level"
     },
     {
@@ -1333,10 +1358,10 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        2580,
-        1920
+        2880,
+        2740
       ],
-      "id": "edb3ed81-edae-4c1f-8ab3-cb9b6ed9b784",
+      "id": "54ce9a47-d9da-49f3-a61b-6f81ad46d28b",
       "name": "Write Medicine Usage"
     },
     {
@@ -1360,10 +1385,10 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        2960,
-        3040
+        3260,
+        3860
       ],
-      "id": "7c1f2ad7-468a-44d2-b3b1-3b3e38234a4e",
+      "id": "bb031f3f-c47b-40f5-9258-bf233e032e2a",
       "name": "write no headache"
     },
     {
@@ -1389,10 +1414,10 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        780,
-        2960
+        860,
+        3780
       ],
-      "id": "a4212859-d223-499d-abbf-c2048addd24b",
+      "id": "1ac217d3-28ff-41ce-a48f-89f3d83ccf97",
       "name": "Execute Workflow1"
     },
     {
@@ -1416,10 +1441,10 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        2980,
-        2740
+        3280,
+        3560
       ],
-      "id": "6645bd40-8c83-4752-a471-8b4632e00006",
+      "id": "6042162a-8e77-4086-aae6-8444610a0abe",
       "name": "Write Action"
     },
     {
@@ -1443,10 +1468,10 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        600,
-        3500
+        680,
+        4320
       ],
-      "id": "622beece-fd19-4b86-af9a-c94a79f6646e",
+      "id": "7f3f977a-9eca-4522-a833-8c58305a6ebb",
       "name": "Execute Workflow"
     },
     {
@@ -1456,11 +1481,57 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        940,
-        3440
+        1020,
+        4260
       ],
-      "id": "a3206e14-cb7e-4246-92c5-b4b01340b215",
+      "id": "775b62fb-d9a4-4065-bb1b-74f5d9c50a65",
       "name": "Code2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "44b785b6-7f6a-4851-9d6d-08f317b8f9e4",
+              "name": "drug_datetime",
+              "value": "={{ $now.format('yyyy-MM-dd') }}T{{ $now.format('HH:mm') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2320,
+        2740
+      ],
+      "id": "fff66180-307d-4258-839e-03ed88cd8746",
+      "name": "Set Medicine Now"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "426cd249-9660-4ed4-bd7d-28c7d56d8519",
+              "name": "drug_datetime",
+              "value": "={{ $('Webhook').item.json.body.events[0].postback.params.datetime }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2340,
+        2940
+      ],
+      "id": "b22f48b5-48d4-4c8b-a3e3-77c54bede0c7",
+      "name": "Set Medicine SelectTime"
     }
   ],
   "connections": {
@@ -1568,7 +1639,7 @@
         ],
         [
           {
-            "node": "Set Drug Usage",
+            "node": "Set Medicine Now",
             "type": "main",
             "index": 0
           }
@@ -1632,6 +1703,13 @@
         [
           {
             "node": "Set Insert Ask Headache Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Medicine SelectTime",
             "type": "main",
             "index": 0
           }
@@ -1940,6 +2018,28 @@
         [
           {
             "node": "Response Success1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Medicine Now": {
+      "main": [
+        [
+          {
+            "node": "Set Drug Usage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Medicine SelectTime": {
+      "main": [
+        [
+          {
+            "node": "Set Drug Usage",
             "type": "main",
             "index": 0
           }

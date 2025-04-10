@@ -8,10 +8,15 @@
     "text": "要記錄唷",
     "actions": [
       {
+        "type": "postback",
+        "label": "就是現在吃了",
+        "text": "就是現在",
+        "data": "drug_datetime=now drug_type_tmp={{$json.drug_type_tmp}} drug_number_tmp={{$json.drug_number}}"
+      },
+      {
         "type": "datetimepicker",
-        "label": "吃的時間",
-        "text": "已好好記錄時間OuO",
-        "data": "drug_datetime=true drug_type_tmp={{$json.drug_type_tmp}} drug_number_tmp={{$json.drug_number}}",
+        "label": "讓我選時間",
+        "data": "drug_datetime=selecttime drug_type_tmp={{$json.drug_type_tmp}} drug_number_tmp={{$json.drug_number}}",
         "mode": "datetime",
         "initial": "{{$now.format('yyyy-MM-dd')}}T{{$now.format('HH:mm')}}",
         "max": "{{$now.plus(1, 'days').format('yyyy-MM-dd')}}T00:00",
