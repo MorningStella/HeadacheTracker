@@ -8,7 +8,7 @@
         "size": "full",
         "aspectRatio": "20:13",
         "aspectMode": "cover",
-        "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdFop3Bho98bzeRdk-zS0YQhh1g6HDgM-05A&s",
+        "url": "https://minio.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=ache_part.png&version_id=null",
         "action": {
           "type": "uri",
           "uri": "https://line.me/"
