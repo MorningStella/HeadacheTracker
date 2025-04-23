@@ -8,7 +8,7 @@
         "size": "full",
         "aspectRatio": "20:13",
         "aspectMode": "cover",
-        "url": "https://minio.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=ache_part.png&version_id=null",
+        "url": "https://storage.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=ache_part.png&version_id=null",
         "action": {
           "type": "uri",
           "uri": "https://line.me/"

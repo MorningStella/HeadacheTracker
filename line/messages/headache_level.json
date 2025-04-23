@@ -12,7 +12,7 @@
           "type": "uri",
           "uri": "https://line.me/"
         },
-        "url": "https://minio.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=rate.png&version_id=null"
+        "url": "https://storage.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=rate.png&version_id=null"
       },
       "body": {
         "type": "box",
