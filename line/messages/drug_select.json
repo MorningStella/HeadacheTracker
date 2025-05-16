@@ -1,37 +1,38 @@
-{   "type": "template",
-    "altText": "吃了什麼藥",
-    "template": {
-        "type": "buttons",
-        "thumbnailImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s",
-        "imageAspectRatio": "rectangle",
-        "imageSize": "cover",
-        "title": "吃了什麼藥",
-        "text": "請選擇一種",
-        "actions": [
-            {
-                "type": "postback",
-                "label": "吃了普拿疼",
-                "text": "吃了普拿疼",
-                "data": "drug_type=普拿疼"
-            },
-            {
-                "type": "postback",
-                "label": "吃了伊普",
-                "text": "吃了伊普",
-                "data": "drug_type=伊普"
-            },
-            {
-                "type": "postback",
-                "label": "吃了肌肉鬆弛",
-                "text": "吃了肌肉鬆弛",
-                "data": "drug_type=肌肉鬆弛"
-            },
-            {
-                "type": "postback",
-                "label": "吃了中藥",
-                "text": "吃了中藥",
-                "data": "drug_type=中藥"
-            }
-        ]
-    }
+{
+  "type": "template",
+  "altText": "吃了什麼藥",
+  "template": {
+    "type": "buttons",
+    "thumbnailImageUrl": "https://storage.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=general_questions.png&version_id=null",
+    "imageAspectRatio": "rectangle",
+    "imageSize": "cover",
+    "title": "吃了什麼藥",
+    "text": "請選擇一種",
+    "actions": [
+      {
+        "type": "postback",
+        "label": "吃了普拿疼",
+        "text": "吃了普拿疼",
+        "data": "drug_type=普拿疼"
+      },
+      {
+        "type": "postback",
+        "label": "吃了伊普",
+        "text": "吃了伊普",
+        "data": "drug_type=伊普"
+      },
+      {
+        "type": "postback",
+        "label": "吃了肌肉鬆弛",
+        "text": "吃了肌肉鬆弛",
+        "data": "drug_type=肌肉鬆弛"
+      },
+      {
+        "type": "postback",
+        "label": "吃了中藥",
+        "text": "吃了中藥",
+        "data": "drug_type=中藥"
+      }
+    ]
+  }
 }

@@ -1,26 +1,26 @@
 {
-    "type": "template",
-    "altText": "吃了幾顆",
-    "template": {
-        "type": "buttons",
-        "thumbnailImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3qzd4OIRQQ0Xb5mTB8Cn-Ij75_OSnuktQw&s",
-        "imageAspectRatio": "rectangle",
-        "imageSize": "cover",
-        "title": "吃了幾顆藥",
-        "text": "四小時只能吃一顆!",
-        "actions": [
-            {
-                "type": "postback",
-                "label": "1",
-                "text": "吃了1顆",
-                "data": "drug_number=1 drug_type_tmp={{$json.drug_type}}"
-            },
-            {
-                "type": "postback",
-                "label": "2",
-                "text": "吃了2顆",
-                "data": "drug_number=2 drug_type_tmp={{$json.drug_type}}"
-            }
-        ]
-    }
+  "type": "template",
+  "altText": "吃了幾顆",
+  "template": {
+    "type": "buttons",
+    "thumbnailImageUrl": "https://storage.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=general_questions.png&version_id=null",
+    "imageAspectRatio": "rectangle",
+    "imageSize": "cover",
+    "title": "吃了幾顆藥",
+    "text": "四小時只能吃一顆!",
+    "actions": [
+      {
+        "type": "postback",
+        "label": "1",
+        "text": "吃了1顆",
+        "data": "drug_number=1 drug_type_tmp={{$json.drug_type}}"
+      },
+      {
+        "type": "postback",
+        "label": "2",
+        "text": "吃了2顆",
+        "data": "drug_number=2 drug_type_tmp={{$json.drug_type}}"
+      }
+    ]
+  }
 }
