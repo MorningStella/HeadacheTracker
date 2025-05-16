@@ -6,10 +6,7 @@
       },
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
-      "position": [
-        0,
-        0
-      ],
+      "position": [0, 0],
       "id": "22a820be-6a50-4eb3-b42a-0a76408fd807",
       "name": "When Executed by Another Workflow"
     },
@@ -17,22 +14,20 @@
       "parameters": {
         "collection": "headache",
         "options": {
-          "limit": 3
+          "limit": 3,
+          "sort": "{\"headache_occur\": -1}"
         },
         "query": "={}"
       },
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
-      "position": [
-        260,
-        0
-      ],
+      "position": [260, 0],
       "id": "703eb428-2455-4620-b90c-fde72ce849ee",
       "name": "MongoDB",
       "credentials": {
         "mongoDb": {
           "id": "GMInDmSsKdmQgiBP",
-          "name": "Local Mongo"
+          "name": "headache_mongo_prod"
         }
       }
     }
