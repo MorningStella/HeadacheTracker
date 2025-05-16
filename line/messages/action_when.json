@@ -5,7 +5,7 @@
     "type": "carousel",
     "columns": [
       {
-        "thumbnailImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpJCsi5pKc3UcEZCovDfqo6dJl2T6rVCe39A&s",
+        "thumbnailImageUrl": "https://storage.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=acupucture.png&version_id=null",
         "title": "針灸",
         "text": "針灸好痠QQ",
         "actions": [
@@ -27,7 +27,7 @@
         ]
       },
       {
-        "thumbnailImageUrl": "https://img.toy-people.com/member/162521222828.png",
+        "thumbnailImageUrl": "https://storage.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=hot_shower.png&version_id=null",
         "title": "沖熱水",
         "text": "沖熱水好舒服~",
         "actions": [
@@ -49,7 +49,7 @@
         ]
       },
       {
-        "thumbnailImageUrl": "https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/25ecd635b6ac9803e574229c886ede9a2f1fbd38.png",
+        "thumbnailImageUrl": "https://storage.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=sleep.png&version_id=null",
         "title": "睡覺",
         "text": "Zzzzzzzzz",
         "actions": [
@@ -72,7 +72,7 @@
         "imageBackgroundColor": "#EA8B8B"
       },
       {
-        "thumbnailImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7mMDdxGFvjdXQEnEChKpGDe7dOH0254P_7g&s",
+        "thumbnailImageUrl": "https://storage.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=massage.png&version_id=null",
         "title": "按摩、按穴道",
         "text": "按摩...",
         "actions": [
