@@ -4,6 +4,7 @@
   "template": {
     "type": "buttons",
     "thumbnailImageUrl": "https://storage.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=general_questions.png&version_id=null",
+    "imageAspectRatio": "square",
     "title": "什麼時候不痛了?",
     "text": "恭喜你!",
     "actions": [

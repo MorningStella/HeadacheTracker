@@ -4,7 +4,7 @@
   "template": {
     "type": "buttons",
     "thumbnailImageUrl": "https://storage.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=general_questions.png&version_id=null",
-    "imageAspectRatio": "rectangle",
+    "imageAspectRatio": "square",
     "imageSize": "cover",
     "title": "吃了什麼藥",
     "text": "請選擇一種",

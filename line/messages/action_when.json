@@ -3,6 +3,7 @@
   "altText": "採取什麼行動?",
   "template": {
     "type": "carousel",
+    "imageAspectRatio": "square",
     "columns": [
       {
         "thumbnailImageUrl": "https://storage.nekosekai.com/api/v1/buckets/public/objects/download?preview=true&prefix=acupucture.png&version_id=null",
