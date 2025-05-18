@@ -50,18 +50,9 @@
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
-      "position": [
-        220,
-        -260
-      ],
-      "id": "103be950-5c26-4f77-8026-a76e84679231",
-      "name": "Write Action",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Ih53FiJ3YzQzkiYH",
-          "name": "devin.lin.gss Google Sheets "
-        }
-      }
+      "position": [-180, 40],
+      "id": "6a1bc24e-08da-4680-9e50-5bc8aad1ddf8",
+      "name": "Write Action"
     },
     {
       "parameters": {
@@ -69,32 +60,26 @@
       },
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
-      "position": [
-        20,
-        -60
-      ],
-      "id": "b52646a3-5878-4250-85b6-7bfeb722b62e",
+      "position": [-380, 240],
+      "id": "6f213dcd-2831-496c-b821-251c181f20af",
       "name": "When Executed by Another Workflow"
     },
     {
       "parameters": {
         "operation": "insert",
         "collection": "action",
-        "fields": "action,occur_time",
+        "fields": "action,occur_time,user_id",
         "options": {}
       },
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
-      "position": [
-        240,
-        -60
-      ],
-      "id": "adb4ad79-727b-4637-883d-cec55924d3e8",
+      "position": [-160, 240],
+      "id": "bbbad49d-44b7-40eb-8100-193818d6ec1a",
       "name": "MongoDB",
       "credentials": {
         "mongoDb": {
-          "id": "MogmGKazdDdMwfXy",
-          "name": "devin-lin headache tracker"
+          "id": "GMInDmSsKdmQgiBP",
+          "name": "headache_mongo_prod"
         }
       }
     }
@@ -110,16 +95,10 @@
           }
         ]
       ]
-    },
-    "MongoDB": {
-      "main": [
-        []
-      ]
     }
   },
   "pinData": {},
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "eb24dce5d4aef556d676bc7f743db645da668ad0a28698a3baf0616aa1f0314b"
+    "instanceId": "7474d84d2b834c864715cc1139cc946616c2310c4f45afb5a0945ca7fc78e0d9"
   }
 }

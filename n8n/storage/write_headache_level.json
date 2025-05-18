@@ -6,11 +6,8 @@
       },
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
-      "position": [
-        0,
-        0
-      ],
-      "id": "14a10f92-5477-461c-a83f-474594d942a8",
+      "position": [0, 0],
+      "id": "cde9d7fd-2d87-45f0-a93b-5ef0c163ecdf",
       "name": "When Executed by Another Workflow"
     },
     {
@@ -61,38 +58,26 @@
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
-      "position": [
-        440,
-        0
-      ],
-      "id": "0a690e91-0400-477c-84ea-caccb48d582a",
-      "name": "Google Sheets3",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Ih53FiJ3YzQzkiYH",
-          "name": "devin.lin.gss Google Sheets "
-        }
-      }
+      "position": [440, 0],
+      "id": "d9d1903d-3e82-4c47-971d-da306e5f3020",
+      "name": "Google Sheets3"
     },
     {
       "parameters": {
         "operation": "insert",
         "collection": "headache",
-        "fields": "pain_level,headache_where,headache_occur",
+        "fields": "pain_level,headache_where,headache_occur,user_id",
         "options": {}
       },
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
-      "position": [
-        220,
-        0
-      ],
-      "id": "73c3ecb8-1592-47ea-858a-430b715fa9be",
+      "position": [220, 0],
+      "id": "b723069f-31cd-4860-b195-6f9cd91e2b02",
       "name": "MongoDB",
       "credentials": {
         "mongoDb": {
-          "id": "MogmGKazdDdMwfXy",
-          "name": "devin-lin headache tracker"
+          "id": "GMInDmSsKdmQgiBP",
+          "name": "headache_mongo_prod"
         }
       }
     }
@@ -108,16 +93,10 @@
           }
         ]
       ]
-    },
-    "MongoDB": {
-      "main": [
-        []
-      ]
     }
   },
   "pinData": {},
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "eb24dce5d4aef556d676bc7f743db645da668ad0a28698a3baf0616aa1f0314b"
+    "instanceId": "7474d84d2b834c864715cc1139cc946616c2310c4f45afb5a0945ca7fc78e0d9"
   }
 }

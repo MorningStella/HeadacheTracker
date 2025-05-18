@@ -79,7 +79,8 @@
         "options": {
           "limit": 3,
           "sort": "{\"drug_datetime\": -1}"
-        }
+        },
+        "query": "={\"user_id\":\"{{$json.body.events[0].source.userId}}\"}"
       },
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
