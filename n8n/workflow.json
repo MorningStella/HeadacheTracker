@@ -100,15 +100,8 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.line.me/v2/bot/message/reply",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": ""
-            }
-          ]
-        },
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{{ $json.message }}\n]\n}",
@@ -118,7 +111,13 @@
       "typeVersion": 4.2,
       "position": [3220, 4020],
       "id": "ebc33535-b653-46ef-9cb6-de69dfbc3ea5",
-      "name": "Response Drug Select"
+      "name": "Response Drug Select",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "iNt070KxORzF3SpI",
+          "name": "Line Auth Token"
+        }
+      }
     },
     {
       "parameters": {
@@ -708,15 +707,8 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.line.me/v2/bot/message/reply",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": ""
-            }
-          ]
-        },
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": \"頭痛快飛😭 {{ $json.drug_datetime }} 吃了 {{ $json.drug_number }} {{ $json.drug_type }}\"\n}\n]\n}",
@@ -726,21 +718,20 @@
       "typeVersion": 4.2,
       "position": [2040, 4020],
       "id": "f8a56b36-4648-44e1-827b-af9f3c4f992a",
-      "name": "Response Success"
+      "name": "Response Success",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "iNt070KxORzF3SpI",
+          "name": "Line Auth Token"
+        }
+      }
     },
     {
       "parameters": {
         "method": "POST",
         "url": "https://api.line.me/v2/bot/message/reply",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": ""
-            }
-          ]
-        },
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').first().json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": {{ $json.formattedOutput }}\n}\n]\n}",
@@ -750,7 +741,13 @@
       "typeVersion": 4.2,
       "position": [480, 5000],
       "id": "b4ae0726-3e3c-47bf-95d8-53d27fa97b7c",
-      "name": "Response Success1"
+      "name": "Response Success1",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "iNt070KxORzF3SpI",
+          "name": "Line Auth Token"
+        }
+      }
     },
     {
       "parameters": {
@@ -808,15 +805,8 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.line.me/v2/bot/message/reply",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": ""
-            }
-          ]
-        },
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": \"在 {{ $json.headache_occur }} 出現了 {{ $json.pain_level }} 級頭痛\"\n}\n]\n}",
@@ -826,7 +816,13 @@
       "typeVersion": 4.2,
       "position": [3140, 3660],
       "id": "464d7fb1-1af8-417d-b9f9-8135ed1d81c1",
-      "name": "Response Success2"
+      "name": "Response Success2",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "iNt070KxORzF3SpI",
+          "name": "Line Auth Token"
+        }
+      }
     },
     {
       "parameters": {
@@ -994,15 +990,8 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.line.me/v2/bot/message/reply",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": ""
-            }
-          ]
-        },
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": \"希望頭痛可以舒緩🥺\"\n}\n]\n}",
@@ -1012,7 +1001,13 @@
       "typeVersion": 4.2,
       "position": [2380, 4840],
       "id": "da1d6ae3-a1c2-4a07-960c-70fe80871be7",
-      "name": "Response Action"
+      "name": "Response Action",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "iNt070KxORzF3SpI",
+          "name": "Line Auth Token"
+        }
+      }
     },
     {
       "parameters": {
@@ -1090,15 +1085,8 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.line.me/v2/bot/message/reply",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": ""
-            }
-          ]
-        },
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"replyToken\":  \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n  \"messages\":[{\n  \"type\": \"text\",\n  \"text\": \"恭喜你在 {{ $json.headache_occur }} 頭不痛啦 😊\"\n}\n]\n}",
@@ -1108,7 +1096,13 @@
       "typeVersion": 4.2,
       "position": [2520, 5140],
       "id": "4cbb96c4-9341-4854-bbea-30391fd7eff8",
-      "name": "Response Success3"
+      "name": "Response Success3",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "iNt070KxORzF3SpI",
+          "name": "Line Auth Token"
+        }
+      }
     },
     {
       "parameters": {
