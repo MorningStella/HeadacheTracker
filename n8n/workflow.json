@@ -1377,7 +1377,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let data = $input.all();\nlet formattedOutput = \"最近頭痛紀錄📝\\n\";\nfor (let i = 0; i < data.length; i++) {\n  const entry = data[i].json;\n  console.log(entry)\n  formattedOutput += `在 ${entry.headache_occur} 發生了 ${entry.pain_level} 級頭痛❗`;\n\n  if(entry.headache_where != null)\n  {\n    formattedOutput += `\\n頭痛部位包含${entry.headache_where.replace(/;$/, '')}`\n  }\n  \n  // Add newline if not the last element\n  if (i < data.length - 1) {\n    formattedOutput += '\\n';\n  }\n}\n\nformattedOutput = JSON.stringify(formattedOutput)\nreturn {formattedOutput}"
+        "jsCode": "let data = $input.all();\nlet formattedOutput = \"最近頭痛紀錄📝\\n\";\nfor (let i = 0; i < data.length; i++) {\n  const entry = data[i].json;\n  console.log(entry)\n\n  if (entry.pain_level === \"0\")\n  {\n    formattedOutput += `在 ${entry.headache_occur} 頭痛好了❤️‍🩹`;\n  }\n  else\n  {\n    formattedOutput += `在 ${entry.headache_occur} 發生了 ${entry.pain_level} 級頭痛❗`;\n  }\n\n  if(entry.headache_where != null)\n  {\n    formattedOutput += `\\n頭痛部位包含${entry.headache_where.replace(/;$/, '')}`\n  }\n  \n  // Add newline if not the last element\n  if (i < data.length - 1) {\n    formattedOutput += '\\n';\n  }\n}\n\nformattedOutput = JSON.stringify(formattedOutput)\nreturn {formattedOutput}"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
