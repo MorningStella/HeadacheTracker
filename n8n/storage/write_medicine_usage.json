@@ -6,11 +6,8 @@
       },
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
-      "position": [
-        -160,
-        -60
-      ],
-      "id": "c397376e-f54f-4153-9cd9-9ec50c37a14e",
+      "position": [0, 0],
+      "id": "de7643a3-c217-4da8-a4d0-f2976a233ad3",
       "name": "When Executed by Another Workflow"
     },
     {
@@ -68,38 +65,26 @@
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
-      "position": [
-        80,
-        -60
-      ],
-      "id": "05c445cb-6852-4ccf-bab4-5ca3d33751c5",
-      "name": "Google Sheets",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Ih53FiJ3YzQzkiYH",
-          "name": "devin.lin.gss Google Sheets "
-        }
-      }
+      "position": [240, 0],
+      "id": "9fb5792a-f297-4e7a-ba84-79986e0a3cb6",
+      "name": "Google Sheets"
     },
     {
       "parameters": {
         "operation": "insert",
         "collection": "medicine_usage",
-        "fields": "drug_type,drug_datetime,drug_number",
+        "fields": "drug_type,drug_datetime,drug_number,user_id",
         "options": {}
       },
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
-      "position": [
-        100,
-        140
-      ],
-      "id": "85ab6b12-2184-4c25-adfd-86fb4b87cf44",
+      "position": [260, 200],
+      "id": "aa013bd7-a594-4413-836d-78135db3ea33",
       "name": "MongoDB",
       "credentials": {
         "mongoDb": {
-          "id": "MogmGKazdDdMwfXy",
-          "name": "devin-lin headache tracker"
+          "id": "GMInDmSsKdmQgiBP",
+          "name": "headache_mongo_prod"
         }
       }
     }
@@ -119,6 +104,6 @@
   },
   "pinData": {},
   "meta": {
-    "instanceId": "eb24dce5d4aef556d676bc7f743db645da668ad0a28698a3baf0616aa1f0314b"
+    "instanceId": "7474d84d2b834c864715cc1139cc946616c2310c4f45afb5a0945ca7fc78e0d9"
   }
 }
